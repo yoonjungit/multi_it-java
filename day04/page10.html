@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function id_length() {
+            id = document.getElementById('id').value
+
+            alert(id.length)
+        }
+        function check_same() {
+            pw = document.getElementById('pw').value
+            pw2 = document.getElementById('pw2').value
+            if (pw == pw2) {
+                result.innerHTML = "<img src='./image/html_image/yes.jpg' width=400px> <br> <font color = blue> 일치합니다.<font>"
+            }
+            else {
+                result.innerHTML = "<img src='./image/html_image/no.jpg' width=400px> <br> <font color = blue> 일치하지 않습니다.<font>"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    아이디 : <input type="text" id="id" value="root">
+    <button onclick="id_length()"> 글자수 체크</button> <br>
+    패스워드 : <input type="text" id="pw" value="1234"> <br>
+    패스워드2 : <input type="text" id="pw2" value="1234">
+    <button onclick="check_same()"> 패스워드 동일 </button> <br>
+    <div id = "result"></div>
+</body>
+
+</html>

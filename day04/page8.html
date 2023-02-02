@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    // 1. @@@출력
+        for (let i=0; i<3; i++) {
+            document.write("<h4>@@@</h4>")
+        }
+    // 2. 자주 가는 사이트
+        answer_site = prompt("당신이 주로 가는 포털사이트는?")
+        if (answer_site =="naver") {
+            location.href ="http://www.naver.com"
+        }
+        else if (answer_site == "daum") {
+            location.href="http://www.daum.net"
+        }
+        else {
+            location.href="http://www.google.com"
+        }
+    </script>
+
+    <script src="out2.js"></script>
+    <script>
+    // 3. 함수 콘솔 출력
+        여행하다()
+        쉬다()
+    </script>
+    <script>
+    //4. 자바 프로그래머?
+        if_java = confirm("당신은 자바 프로그래머인가요?")
+        if (if_java==true) {
+            alert("훌륭한 웹프로그래머시군요")
+        }
+        else {
+            alert("다른 언어를 사용하시는 군요!")
+        }
+    </script>
+    <script>
+    // 5. 커피 사기
+        price = prompt("커피 값은?")
+        count = prompt("몇 잔 구매?")
+        total = price*count
+        if (total>=15000) {
+            alert("할인해드릴게요")
+        }
+        else {
+            alert("정가로 내셔야 해요")
+        }
+    </script>
+    <script>
+    // 6. 음식 사기
+        food = prompt("먹고 싶은 음식은?")
+        food_price = prompt("음식 가격은?")
+        if (food=="커피" && food_price<5000){
+            alert("내가 살게요")
+        }
+        else {
+            alert("네가 사세요")
+        }
+    </script>
+    <script>
+    // 7. 오전, 오후?
+        time = prompt("지금은 오전인가요? 오후인가요?")
+        
+        if (time == "오전") {
+            for (let index = 0 ; index < 3 ; index++) {
+                document.write("굿모닝! <br>")
+            }
+        }
+        else {
+            for (let index = 0 ; index < 5 ; index++) {
+                document.write("굿애프터눈! <br>")
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

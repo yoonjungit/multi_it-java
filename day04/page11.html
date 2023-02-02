@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function pay(){
+            shop = document.getElementById('shop').value
+            price = document.getElementById('price').value
+            pay_by = document.getElementById('pay_by').value
+            show = shop +'에서' + price + "원을 결제수단 " + pay_by +"번으로 결제했습니다."
+            result.innerHTML = shop +'에서' + price + "원을 결제수단 " + pay_by +"번으로 결제했습니다."
+        }
+    </script>
+</head>
+<body>
+    <hr color="red">
+    구매상점 : <input type="text" id="shop" value="더 조은 샵"> <br>
+    결제금액 : <input type="text" id="price" value="10000"> <br>
+    입력수단 : (1)계좌이체, (2)신용카드, (3)휴대폰결제 <br>
+    <input type="text" id="pay_by" value=1><br>
+    <button onclick="pay()">결제버튼</button> <br>
+    <hr color="blue">
+    <div id="result"></div>
+</body>
+</html>

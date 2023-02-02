@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function hi() {
+            alert('여러분~~~ 2시간이 끝나요!! 힘내세요!!')
+        }
+        function bye() {
+            alert('드디어 끝났어요!!! 안녕히가세요.@@')
+        }
+        function check() {
+            id = "root"
+            pw = "1234"
+            id2 = document.getElementById('id2').value //"root"
+            pw2 = document.getElementById('pw2').value //"1234"
+            alert(id2.length) //글자수
+            //id2가 id와 일치, pw2가 pw와 일치 둘다 만족하면
+            //(and조건, &&, 앤퍼센트)
+            //alert("로그인 성공!!!"), 아니면 alert("로그인 실패!!!")
+            result = document.getElementById('result')
+            if (id == id2 && pw == pw2) {
+                // alert("로그인 성공!!!")
+                // result 안에 오른쪽에 있는 내용을 html 코드로 안쪽에 집어넣어요!
+                result.innerHTML = "<img src='./image/html_image/yes.jpg' width = 400px><br><font color = blue>로그인 성공!!!<font> "
+            } else {
+                // alert("로그인 실패!!!")
+                result.innerHTML = "<img src='./image/html_image/no.jpg' width = 400px><br><font color = red>로그인 실패!!!<font> "
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="b1()">AjaxTest 받아오기</button>
+    <button onclick="hi()">인사처리</button>
+    <button onclick="bye()">안녕처리</button>
+    <hr color="red">
+    아이디 : <input type="text" id="id2" value="root"> <br>
+    패스워드 : <input type="text" id="pw2" value="1234"> <br>
+    <button onclick="check()">로그인처리</button>
+    <div id = "result">
+        결과 들어갈 곳.
+    </div>
+</body>
+</html>
