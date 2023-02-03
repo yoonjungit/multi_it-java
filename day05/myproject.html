@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023 Netflix Original Korea</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="myproject.js"></script>
+    <link rel="stylesheet" href="myproject.css">
+    <script>
+    function notice1(){
+            alert("더 글로리 파트 2 공개 하루 전 알려드리겠습니다.")
+        }
+    function notice2(){
+            alert("DP 시즌 2 공개 하루 전 알려드리겠습니다.")
+        }
+    function notice3(){
+            alert("스위트 홈 시즌2 공개 하루 전 알려드리겠습니다.")
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align:center">
+    <img src="https://blog.kakaocdn.net/dn/c4jzIT/btrghQIPMkh/sByblE0p50HHtMiEDdn8k1/img.png" alt="" width="500px">
+    <h1>2023 Netflix Original Korea Line-Up</h1>
+    <br><br>
+    <table border="1" style="width: 550px; height:300px; margin-left:auto;margin-right:auto;">
+        <tr align="center"style="font-size: larger;">
+            <td style="width:250px">작품명</td>
+            <td style="width:150px">공개예정일</td>
+            <td style="width:100px">예고편</td> 
+            <td style="width:50px">알림</td>
+        </tr> 
+        <tr align="center">
+            <td style="width:250px">더 글로리 파트 2</td>
+            <td style="width:150px">2023.03.10</td>
+            <td style="width:100px"><a href="https://youtube.com/watch?v=1z8DF2V5dQc&feature=shares">예고편</a></td>
+            <td style="width:50px"><button onclick="notice1()">알림</button></td>
+
+        </tr>
+        <tr align="center">
+            <td style="width:250px">DP 시즌2</td>
+            <td style="width:150px">미정</td>
+            <td style="width:100px">예고편</td>
+            <td style="width:50px"><button onclick="notice2()" >알림</button></td>
+
+        </tr>
+        <tr align="center">
+            <td style="width:250px">스위트 홈 시즌2</td>
+            <td style="width:150px">미정</td>
+            <td style="width:100px">예고편</td>
+            <td style="width:50px"><button onclick="notice3()" >알림</button></td>
+        </tr>
+    </table>
+    <form style="padding-top: 30px;margin: auto; width: 500px;">
+        더 많은 <img src="https://blog.kakaocdn.net/dn/c4jzIT/btrghQIPMkh/sByblE0p50HHtMiEDdn8k1/img.png" alt="" width="50px"> 작품 찾기 <input type="text">
+        <button id="search">검색</button>
+    </form>
+    </div>
+</body>
+</html>

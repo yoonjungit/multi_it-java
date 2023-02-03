@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ajax너무 어려웡</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+      $(function () {
+        $('#b1').click(function () {
+            // alert('b1클릭함')
+            $.ajax({
+                url : "info.html", 
+                success : function(x){
+                    $('#d1').html(x)
+                }
+            })
+        })
+        $('#b2').click(function () {
+            // alert('b2클릭함')
+            $.ajax({
+                url : "info2.html", 
+                success : function(x){
+                    $('#d2').html(x)
+                }
+            })
+        })
+        //$('#b3') -> #: 아이디, document.getElementById('b3')
+        $('#b3').click(function () {
+            // alert('b3클릭함')
+            $.ajax({
+                url : "info3.html", 
+                success : function(x){ //여기서 x는 url의 내용
+                    $('#d3').html(x)    //x를 div d3 html에 넣어라
+                }
+            })
+        })
+      });
+    </script>
+  </head>
+  <body>
+    <button id="b1">영화정보 받아오기(info.html)</button><br>
+    <button id="b2">코로나 정보 받아오기(info2.html)</button><br>
+    <button id="b3">교통정보 받아오기(info3.html)</button>
+    <hr>
+    <div id="d1" style="width:200px;height:100px; background: lime"></div>
+    <div id="d2" style="width:200px;height:100px; background: yellow"></div>
+    <div id="d3" style="width:200px;height:100px; background: pink"></div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function pay() { //결제처리 기능 정의
+           //alert('내가 실행되어요!!')
+           //1. 입력-입력한 값 가지고 오기
+           com = document.getElementById('com').value //"com"
+           money = document.getElementById('money').value //"com"
+           choice = document.getElementById('choice').value //"com"
+          
+           //2. 처리-결제금액 계산해주기
+           //숫자로 변환해주는 처리
+           money2 = parseInt(money)
+           if (choice == '2') { //신용카드 + 1000
+            money2 = money2 + 1000 //cpu가 money2의 값을 가지고와서 1000을 더해줌.
+           }else if (choice == '3') {
+            money2 = money2 + 500
+           }
+           text = "구매상점은 " + com + "이고, 결제수단은 " + choice + "이고, 결제금액은 " + "<font color=red>" + money2+ "</font>"
+           //3. 출력-결과를 출력 
+           result_tag = document.getElementById('result')
+           result_tag.innerHTML = text
+        }
+    </script>
+</head>
+<body>
+    구매상점: <input type="text" value="멀티샵" id="com"> <br>
+    결제금액: <input type="text" value="10000" id="money"> <br>
+    결제수단: 1)계좌이체, 2)신용카드, 3)휴대폰결제 
+    <input type="text" value="1"  id="choice"> <br>
+    <button onclick="pay()">결제 처리 버튼</button>
+    <div id="result">
+        
+    </div>
+</body>
+</html>
+
+<!-- 
+1. 자바 스크립트 복습
+1) 자바 스크립트 사용 3가지
+   - 외부에 out.js를 만들어서 html문서간 링크
+   - 특정한 html내에서만 사용, head태그 안에 script태그
+   - 특정한 태그내에서만 사용, inline방식 onClick속성에 함수를 연결
+2) 변수(저장공간), 연산자(기호, 산술, 비교, 논리, 결합, 대입), 기본데이터(정수, 실수, 문자, 논리)
+3) 제어문- 순차문(입력-> 처리-> 출력), 조건문(if, if~else), 반복문(for)
+4) 순차문(입력-> 처리-> 출력)
+   입력 a)prompt( ), b)input태그
+5) 함수-기능(function)정의해 놓은 것
+          버튼클릭하면 특정한 기능을 처리하도록 프로그래밍~~
+          버튼 하나당 함수하나 연결하면 됨.!
+2. 자바 스크립트 응용- kakao map, google chart
+3. JQUERY + AJAX 맛보기
+4. site project
+-->
