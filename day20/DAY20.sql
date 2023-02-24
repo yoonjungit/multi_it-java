@@ -1,0 +1,103 @@
+CREATE TABLE HR."NOTICE2" 
+   (	"BOARDNO" NUMBER(38,0), 
+	"TITLE" VARCHAR2(100), 
+	"CONTENTS" VARCHAR2(100), 
+	"WRITER" VARCHAR2(2), 
+	"WRITE_DATE" DATE, 
+	"RECOMMEND" NUMBER(38,0), 
+	"VIEW_COUNT" NUMBER(38,0)
+   )
+   
+-- 추천게시판(recommend)
+-- re_no 숫자
+-- title, content, writer 문자
+
+CREATE TABLE "HR"."RECOMMEND" 
+   (	"RE_NO" NUMBER(38,0), 
+	"TITLE" VARCHAR2(100), 
+	"CONTENTS" VARCHAR2(100), 
+	"WRITER" VARCHAR2(100)
+   )
+   
+-- 테이블 통째로 삭제   
+DROP TABLE "HR"."RECOMMEND" 
+
+CREATE TABLE "HR"."RECOMMEND"
+   (	"RE_NO" NUMBER(20,0), 
+	"TITLE" VARCHAR2(100), 
+	"CONTENTS" VARCHAR2(100), 
+	"WRITER" VARCHAR2(100)
+   )
+   
+ALTER TABLE HR.RECOMMEND MODIFY TITLE VARCHAR2(333);
+
+CREATE USER apple IDENTIFIED BY a1234;
+
+GRANT CONNECT, resource, dba TO apple;
+
+INSERT INTO MEMBER values('100', '100', 'park', '011')
+
+INSERT INTO MEMBER values('200', '200', 'park', '011')
+
+INSERT INTO MEMBER values('300', '100', 'park', '011')
+
+SELECT * FROM MEMBER
+
+UPDATE MEMBER SET name = 'kim' WHERE id = '100'
+
+CREATE TABLE PRODUCT (
+id VARCHAR2(100),
+name VARCHAR2(100),
+content VARCHAR2(100),
+price NUMBER(20,0),
+company VARCHAR2(100),
+img VARCHAR2(100)
+)
+
+SELECT * FROM MEMBER ORDER BY ID
+
+SELECT * FROM MEMBER ORDER BY ID DESC
+
+-- 확인문제
+
+--price로 내림차순 정렬하여 전체컬럼 검색
+ --company로 오름차순 정렬하여 제품의 이름, 내용, 가격 검색
+--id가 100인 제품의 이름과 가격 검색
+--price가 5000인 제품명과 회사명
+--id가 100이고 가격이 1000인 제품명과 이미지 검색
+--회사명이 c100인 회사명과 제품명
+--회사명이 c100, c200인 제품명과 가격
+--price가 5000원인 제품의 content를 품절로 수정
+--id가 100, 102번 제품의 img를 o.png로, price를 10000으로 수정
+--id가 101번 제품의 company를 apple, name은 appleshoes로 수정
+--name이 shoes1이거나 id가 107인 제품 삭제
+--회사명이 c100인 경우 모든 정보 삭제
+--테이블의 모든 정보 삭제
+
+SELECT * FROM PRODUCT ORDER BY PRICE DESC
+
+SELECT * FROM PRODUCT ORDER BY COMPANY
+
+SELECT NAME, PRICE FROM PRODUCT WHERE ID='100'
+
+SELECT * FROM PRODUCT WHERE PRICE='5000'
+
+SELECT * FROM PRODUCT WHERE ID='100' AND PRICE = '1000'
+
+SELECT * FROM PRODUCT WHERE COMPANY='c100'
+
+SELECT * FROM PRODUCT WHERE COMPANY='c100' OR COMPANY='c200'
+
+UPDATE PRODUCT SET CONTENT = '품절' WHERE PRICE = '5000' 
+
+UPDATE PRODUCT SET PRICE ='10000', IMG ='O.PNG' WHERE ID='100' OR ID='102'
+
+UPDATE PRODUCT SET COMPANY ='APPLE', NAME ='APPLESHOES' WHERE ID='101'
+
+DELETE FROM PRODUCT WHERE NAME='shoes1' OR ID = '107'
+
+DELETE FROM PRODUCT WHERE COMPANY ='c100'
+
+DELETE FROM PRODUCT
+
+DROP TABLE PRODUCT
