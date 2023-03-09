@@ -45,3 +45,19 @@
 > 역할
 
 4명이 팀원이 위의 메뉴를 한개씩 맡아서 개발
+
+## [2] 구현-1단계 (28일차)
+
+### 1. DB 설계
+
+<p align="center"><img src="https://user-images.githubusercontent.com/64455378/224481681-a4761074-dde6-490c-90c5-bd83cec713d2.gif" width=300> </p>
+
+총 네개의 테이블로 PJ_RESTAURANT 테이블과 PJ_MEMBER 테이블를 기준으로 각각 Name 과 ID를 기본키로 설정하고 다른 테이블에서 외래키로 참조할 수 있도록 하였다.
+
+### 2. 기초 UI
+
+각자 한 메뉴를 담당하기 때문에 통합된 UI가 필요해 위의 프로토타입을 기반으로 UI를 구성하였다. 
+
+[기초UI](./src/app/uiBase.java)
+
+<p align="center"><img src="https://user-images.githubusercontent.com/64455378/224481482-0d5ef6cc-d9dd-4502-adf9-0cbe51de7099.png" width=200> </p>
