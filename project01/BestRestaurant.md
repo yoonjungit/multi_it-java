@@ -61,3 +61,20 @@
 [기초UI](./src/app/uiBase.java)
 
 <p align="center"><img src="https://user-images.githubusercontent.com/64455378/224481482-0d5ef6cc-d9dd-4502-adf9-0cbe51de7099.png" width=200> </p>
+
+## [3]구현 2단계 (29일차)
+
+### 1. 맛집 검색 메뉴 UI
+
+<p align="center"><img src="https://user-images.githubusercontent.com/64455378/224493634-7e920c04-8932-446e-bd64-5bf5ec94583f.gif" width=200> </p>
+
+- 레스토랑 데이터는 임의로 다음과 같이 작성
+
+<p align="center"><img src="https://user-images.githubusercontent.com/64455378/224493933-9d19d19c-a94b-4c15-95ee-5bb594a5d286.JPG" width=900> </p>
+
+- 프로토타입 대로 드롭다운 메뉴 구성 시, 기간내 끝내지 못할 것 같아 버튼으로 변경하였다.
+
+- 음식점 리스트를 DAO에서 Select구문 실행 후 배열로 반환 받는데, 이때 각 음식점 이미지 마다 크기 조정 시, 지역별 조회 시 실행은 정상적으로 되지만 다음과 같은 창 나오는 에러  (Delayed model change job has encountered a problem. An internal error has occurred. Index out of bounds)
+
+<p align="center"><img src="https://user-images.githubusercontent.com/64455378/224493413-3be0c363-1ca8-415b-bd46-e71cfe54a495.png" width=250> </p>
+
