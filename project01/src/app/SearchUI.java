@@ -19,92 +19,130 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 public class SearchUI extends JFrame{
-	JButton search, ranking, mypage;
+	JButton searchB, rankingB, mypageB;
 	JLabel lineUnder, lineTop;
-	JPanel mainPanel, seoulPanel, anyangPanel, chuncheonPanel, busanPanel;
+	JPanel mainPanel;
 	JScrollPane scroll;
-	public ArrayList<SearchDTO> valueList = new ArrayList<SearchDTO>();
-	public int listTotal, height;
+	
+	public static ArrayList<SearchDTO> resList = new ArrayList<SearchDTO>();
+	public static ArrayList<JPanel> resListPanel = new ArrayList<JPanel>();
+	
+	public static ImageIcon fullStarIcon, starIcon;
+	public static ArrayList<String> bookmarkList = new ArrayList<>();
 	
 	public static void main(String[] args) {
+		//1. 기본 메소드 : 음식점 리스트 전체 받아오기
 		SearchUI ui = new SearchUI();
-		ui.showList();
+		//2. 회원 북마크 음식점 리스트 받기
+		GetBookmark bm = new GetBookmark();	
+		//3. 북마크 아이콘 만들기
+		SetStarIcon star = new SetStarIcon();
+		//4. 전체 음식점 판넬 만들기
+		MakePanel makePanelAll = new MakePanel();
+		//5. 프로그램 실행
+		ui.frameView();
+		//6. 지역 음식점 리스트 받기
 	}
 	
-	//기본 메소드 - 전체 리스트 받아오기
+	//1. 기본 메소드 : 음식점 리스트 전체 받아오기
 	public SearchUI() {
-		SearchDAO getList = new SearchDAO();
-		
-		valueList = getList.search();
-		listTotal = valueList.size();
+		SearchDAO getResList = new SearchDAO();
+		resList = getResList.search();
 	}
 	
-	//지역 Select 클래스 - 선택한 지역 리스트 받아오기
-	public class searchBy {
-		
-		public JPanel searchByL(String location) {
-			SearchDAO getS = new SearchDAO();
-			ArrayList<SearchDTO> valueListS = getS.searchL(location);
-			int heightS = 133 * valueListS.size();
+	//2. 회원 북마크 음식점 리스트 받기
+	public static class GetBookmark{
+		public GetBookmark() {
+			SearchDAO dao = new SearchDAO();
+			bookmarkList = dao.searchBookmark();
+		}
+	}
+	
+	//3. 북마크 아이콘 만들기
+	public static class SetStarIcon{
+		public SetStarIcon() {
+			ImageIcon star1 = new ImageIcon("full_star.jpg");
+			Image star2 = star1.getImage();
+			Image star3 = star2.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+			fullStarIcon = new ImageIcon(star3);
 			
-			JPanel locationPanel = new JPanel();
-			locationPanel.setLayout(null);
-			locationPanel.setBackground(Color.white);
-			locationPanel.setPreferredSize(new Dimension(310, heightS));
-			
-			for (int i = 0; i < valueListS.size(); i++) {
-				//1. 레스토랑 판넬
-				JPanel panelRS = new JPanel();
-				panelRS.setPreferredSize(new Dimension(310, 130));
-				panelRS.setLayout(null);
-				panelRS.setBackground(Color.white);
-				panelRS.setBorder(new TitledBorder(new LineBorder(Color.decode("#E74C3C"))));
+			ImageIcon star4 = new ImageIcon("star.png");
+			Image star5 = star4.getImage();
+			Image star6 = star5.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+			starIcon = new ImageIcon(star6);
+		}
+	}
+	
+	//4. 음식점 판넬 만들기
+	public static class MakePanel {
+		public MakePanel() {
+			for (int i = 0; i < resList.size(); i++) {
+				//1. 음식점 판넬
+				JPanel resPanel = new JPanel();
+				resPanel.setPreferredSize(new Dimension(310, 130));
+				resPanel.setLayout(null);
+				resPanel.setBackground(Color.white);
+				resPanel.setBorder(new TitledBorder(new LineBorder(Color.decode("#E74C3C"))));
 				
-				//2. 레스토랑 이미지 버튼
+				//2. 음식점 이미지 버튼
 				JButton imagebutton = new JButton("");
-				ImageIcon img11 = new ImageIcon(valueListS.get(i).getImg());
-				imagebutton.setIcon(img11);
+				//2-1. 버튼 이미지 사이즈 조정 후 설정
+				ImageIcon img = new ImageIcon(resList.get(i).getImg());
+				Image getImg = img.getImage();
+				Image setImgSize = getImg.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+				ImageIcon imgIcon = new ImageIcon(setImgSize);
+				imagebutton.setIcon(imgIcon);	//이미지 설정
+				//2-2. 이미지 버튼 - 테두리 없애기 / 배경색 없애기 / 크기, 위치 설정
 				imagebutton.setBorderPainted(false);
 				imagebutton.setFocusPainted(false);
 				imagebutton.setBounds(5, 5, 120, 120);
-
-				//3. 레스토랑 설명 라벨
-				JLabel descriplabel = new JLabel("<html>" + valueListS.get(i).getCategory()
-						+"<br>" +valueListS.get(i).getName() 
-						+"<br>" + valueListS.get(i).getAddress() + "</html>");
+				//2-3. 이미지 버튼 클릭 기능
+				String resName = resList.get(i).getName();
+				imagebutton.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println(resName +"로 이동");
+					}
+				});
+				
+				//3. 음식점 설명 라벨 - 내용 / 위치, 크기
+				JLabel descriplabel = new JLabel("<html>" + resList.get(i).getCategory()
+						+"<br>" + resList.get(i).getName() 
+						+"<br>" + resList.get(i).getAddress() + "</html>");
 				descriplabel.setBounds(130, 5, 180, 90);
 				
-				//4. 별점 판넬
+				//4. 별점 판넬 - 레이아웃 없애기 / 배경색 : 흰색 / 위치, 크기 설정
 				JPanel rating = new JPanel();
 				rating.setLayout(null);
 				rating.setBackground(Color.white);
 				rating.setBounds(130, 100, 170, 20);
 				
 				//4-1. 각 지도별 라벨, 별점 받아오기
-				JLabel naver = new JLabel(Float.toString(valueListS.get(i).getnStars()));
-				JLabel kakao = new JLabel(Float.toString(valueListS.get(i).getkStars()));
-				JLabel google = new JLabel(Float.toString(valueListS.get(i).getgStars()));
+				JLabel naver = new JLabel(Float.toString(resList.get(i).getnStars()));	//네이버지도
+				JLabel kakao = new JLabel(Float.toString(resList.get(i).getkStars()));	//카카오맵
+				JLabel google = new JLabel(Float.toString(resList.get(i).getgStars()));	//구글맵
 				
-				//4-2. 각 지도별 라벨에 아이콘 넣기
-				ImageIcon iconN = new ImageIcon("nMap.png");
+				//4-2. 각 지도별 라벨에 이미지 넣기
+				ImageIcon iconN = new ImageIcon("nMap.png");		//네이버지도
 				Image nMap = iconN.getImage();
 				Image setsize1 = nMap.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 				ImageIcon naverIcon1 = new ImageIcon(setsize1);
 				naver.setIcon(naverIcon1);
 				
-				ImageIcon iconK = new ImageIcon("kMap.png");
+				ImageIcon iconK = new ImageIcon("kMap.png");		//카카오맵
 				Image kMap = iconK.getImage();
 				Image setsize2 = kMap.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 				ImageIcon kakaoIcon2 = new ImageIcon(setsize2);
 				kakao.setIcon(kakaoIcon2);
 
-				ImageIcon iconG = new ImageIcon("gMap.png");
+				ImageIcon iconG = new ImageIcon("gMap.png");		//구글맵
 				Image gMap = iconG.getImage();
 				Image setsize3 = gMap.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 				ImageIcon googleIcon3 = new ImageIcon(setsize3);
 				google.setIcon(googleIcon3);
 				
-				//4-3. 각 지도 라벨 별점 판넬에 넣기
+				//4-3. 각 지도 라벨 별점 판넬에 넣기 / 위치, 크기 지정
 				naver.setBounds(5, 0, 53, 20);
 				kakao.setBounds(60, 0, 53, 20);
 				google.setBounds(115, 0, 53, 20);
@@ -113,42 +151,70 @@ public class SearchUI extends JFrame{
 				rating.add(kakao);
 				rating.add(google);
 				
-				//5. 레스토랑 판넬에 이미지 버튼, 설명 라벨, 별점 판넬 넣기
-				panelRS.add(imagebutton);
-				panelRS.add(descriplabel);
-				panelRS.add(rating);
+				//5. 북마크
+				JButton bookmark = new JButton();
+				// 만약 회원 북마크 리스트에 해당 음식점이 있으면 -> 꽉찬 별, 그외 빈 별
+				if (bookmarkList.contains(resList.get(i).getName())) {
+					bookmark.setIcon(fullStarIcon);
+				} else {
+					bookmark.setIcon(starIcon);
+				}
+				//5-1. 북마크 - 위치, 크기 설정 / 배경색 : 흰색 / 테두리 없애기
+				bookmark.setBounds(270, 10, 20, 20);
+				bookmark.setBackground(Color.white);
+				bookmark.setBorderPainted(false);
+				//5-2. 북마크 클릭 기능
+				bookmark.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						SearchDAO dao = new SearchDAO();
+						//음식점 이름, 회원 ID(아직 로그인 연동 전이므로 임의의 ID)로 Select 실행 후 
+						//해당 데이터가 북마크DB리스트에
+						//있으면 북마크 해제(꽉찬 별->빈별)
+						//없으면 북마크 설정(빈별->꽉찬 별)
+						int bmUpdate = dao.bookmarkUpdate(resName);
+						if (bookmark.getIcon().equals(fullStarIcon)) {
+							bookmark.setIcon(starIcon);
+						} else {
+							bookmark.setIcon(fullStarIcon);
+						}
+					}
+				});
 				
-				//6. 메인 판넬에 레스토랑 판넬 넣기 
-				locationPanel.add(panelRS);
+				//6. 음식점 판넬에 이미지 버튼, 설명 라벨, 별점 판넬 넣기
+				resPanel.add(imagebutton);
+				resPanel.add(descriplabel);
+				resPanel.add(rating);
+				resPanel.add(bookmark);
 				
-				//7. 레스토랑 판넬 위치 설정
-				panelRS.setBounds(5, 5+(i*132), 310, 130);
+				resListPanel.add(resPanel);
 			}
-			return locationPanel;
 		}
 	}
+	
+	public void frameView() {
 
-	public void showList() {
-
-		//1. 프레임 설정
+		//1. 프레임 - 타이틀 / 사이즈 / 레이아웃 / 배경색 : 흰색
 		setTitle("찐찐맛집");
 		setSize(360, 640);
 		setLayout(null);
 		getContentPane().setBackground(Color.white);
-		Font titleFont = new Font("돋움", 1, 30);
-		
-		//2. 타이틀 라벨, 로고 라벨
+
+		//2-1. 타이틀 라벨
 		JLabel title = new JLabel("맛집 검색");
+		Font titleFont = new Font("돋움", 1, 30);
 		title.setFont(titleFont);
 		title.setBounds(10,10,360,40);
 		title.setForeground(Color.decode("#E74C3C"));
 		
+		//2-2. 로고 라벨(이미지)
 		JLabel logo = new JLabel();
 		ImageIcon logo1 = new ImageIcon("icon_color.png");
 		logo.setIcon(logo1);
 		logo.setBounds(300, 10, 50, 50);
 
-		//3. 지역선택 버튼
+		//3. 지역선택 버튼 - 문구 / 위치, 크기 / 배경,글씨체 색 / 테두리 없애기
 		JButton seoul = new JButton("서울");
 		JButton anyang = new JButton("안양");
 		JButton chuncheon = new JButton("춘천");
@@ -179,8 +245,8 @@ public class SearchUI extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				searchBy seoulList = new searchBy();
-//				JPanel seoulPanel = seoulList.searchByL(seoul.getText());
+				GetLocationList seoulList = new GetLocationList();
+				JPanel seoulPanel = seoulList.getResListL(seoul.getText());
 				scroll.setViewportView(null);
 				scroll.setViewportView(seoulPanel);
 			}
@@ -189,8 +255,8 @@ public class SearchUI extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				searchBy anyangList = new searchBy();
-//				JPanel anyangPanel = anyangList.searchByL(anyang.getText());
+				GetLocationList anyangList = new GetLocationList();
+				JPanel anyangPanel = anyangList.getResListL(anyang.getText());
 				scroll.setViewportView(null);
 				scroll.setViewportView(anyangPanel);
 
@@ -201,8 +267,8 @@ public class SearchUI extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				searchBy chuncheonList = new searchBy();
-//				JPanel chuncheonPanel =chuncheonList.searchByL(chuncheon.getText());
+				GetLocationList chuncheonList = new GetLocationList();
+				JPanel chuncheonPanel =chuncheonList.getResListL(chuncheon.getText());
 				scroll.setViewportView(null);
 				scroll.setViewportView(chuncheonPanel);
 			}
@@ -212,120 +278,28 @@ public class SearchUI extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				searchBy busanList = new searchBy();
-//				JPanel busanPanel = busanList.searchByL(busan.getText());
+				GetLocationList busanList = new GetLocationList();
+				JPanel busanPanel = busanList.getResListL(busan.getText());
 				scroll.setViewportView(null);
 				scroll.setViewportView(busanPanel);
 			}
 		});
 		
-		searchBy seoulList = new searchBy();
-		seoulPanel = seoulList.searchByL(seoul.getText());
-		
-		searchBy anyangList = new searchBy();
-		anyangPanel = anyangList.searchByL(anyang.getText());
-		
-		searchBy chuncheonList = new searchBy();
-		chuncheonPanel =chuncheonList.searchByL(chuncheon.getText());
-		
-		searchBy busanList = new searchBy();
-		busanPanel = busanList.searchByL(busan.getText());
-		
-		//5. 메인 JPanel
+		//5. 메인 JPanel - 레이아웃 없애기 / 배경색 : 흰색 / 사이즈 지정
 		mainPanel = new JPanel();
 		mainPanel.setLayout(null);
 		mainPanel.setBackground(Color.white);
-		height = 133 * listTotal;
+		int height = 133 * resList.size();
 		mainPanel.setPreferredSize(new Dimension(310, height));
-		
-		//음식점 별 이미지 크기 조정(에러남)	
-//		ArrayList<ImageIcon> imageList = new ArrayList<>();
-//		String img = null;
-//		
-//		for (int i = 0; i < valueList.size(); i++) {
-//			img = valueList.get(i).getImg();
-//			ImageIcon img0 = new ImageIcon(img);
-//			Image image0 = img0.getImage();
-//			Image setsize0 = image0.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-//			ImageIcon imgIcon0 = new ImageIcon(setsize0);
-//			imageList.add(imgIcon0);
-//		}
+
 	
-		
-//		6. 각 음식점 판넬
-		for (int i = 0; i < valueList.size(); i++) {
-			//1. 음식점 판넬
-			JPanel panelR = new JPanel();
-			panelR.setPreferredSize(new Dimension(310, 130));
-			panelR.setLayout(null);
-			panelR.setBackground(Color.white);
-			panelR.setBorder(new TitledBorder(new LineBorder(Color.decode("#E74C3C"))));
-			
-			//2. 음식점 이미지 버튼
-			JButton imagebutton = new JButton("");
-			ImageIcon img11 = new ImageIcon(valueList.get(i).getImg());
-			imagebutton.setIcon(img11);
-			imagebutton.setBorderPainted(false);
-			imagebutton.setFocusPainted(false);
-			imagebutton.setBackground(Color.pink);
-			imagebutton.setBounds(5, 5, 120, 120);
-
-			//3. 음식점 설명 라벨
-			JLabel descriplabel = new JLabel("<html>" + valueList.get(i).getCategory()
-					+"<br>" +valueList.get(i).getName() 
-					+"<br>" + valueList.get(i).getAddress() + "</html>");
-			descriplabel.setBounds(130, 5, 180, 90);
-			
-			//4. 별점 판넬
-			JPanel rating = new JPanel();
-			rating.setLayout(null);
-			rating.setBackground(Color.white);
-			rating.setBounds(130, 100, 170, 20);
-			
-			//4-1. 각 지도별 라벨, 별점 받아오기
-			JLabel naver = new JLabel(Float.toString(valueList.get(i).getnStars()));	//네이버지도
-			JLabel kakao = new JLabel(Float.toString(valueList.get(i).getkStars()));	//카카오맵
-			JLabel google = new JLabel(Float.toString(valueList.get(i).getgStars()));	//구글맵
-			
-			//4-2. 각 지도별 라벨에 아이콘 넣기
-			ImageIcon iconN = new ImageIcon("nMap.png");		//네이버지도
-			Image nMap = iconN.getImage();
-			Image setsize1 = nMap.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-			ImageIcon naverIcon1 = new ImageIcon(setsize1);
-			naver.setIcon(naverIcon1);
-			
-			ImageIcon iconK = new ImageIcon("kMap.png");		//카카오맵
-			Image kMap = iconK.getImage();
-			Image setsize2 = kMap.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-			ImageIcon kakaoIcon2 = new ImageIcon(setsize2);
-			kakao.setIcon(kakaoIcon2);
-
-			ImageIcon iconG = new ImageIcon("gMap.png");		//구글맵
-			Image gMap = iconG.getImage();
-			Image setsize3 = gMap.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-			ImageIcon googleIcon3 = new ImageIcon(setsize3);
-			google.setIcon(googleIcon3);
-			
-			//4-3. 각 지도 라벨 별점 판넬에 넣기
-			naver.setBounds(5, 0, 53, 20);
-			kakao.setBounds(60, 0, 53, 20);
-			google.setBounds(115, 0, 53, 20);
-			
-			rating.add(naver);
-			rating.add(kakao);
-			rating.add(google);
-			
-			//5. 음식점 판넬에 이미지 버튼, 설명 라벨, 별점 판넬 넣기
-			panelR.add(imagebutton);
-			panelR.add(descriplabel);
-			panelR.add(rating);
-			
-			//6. 메인 판넬에 음식점 판넬 넣기 
-			mainPanel.add(panelR);
-			
-			//7. 음식점 판넬 위치 설정
-			panelR.setBounds(5, 5+(i*132), 310, 130);
+//		6. 각 음식점 판넬 (위치, 크기 지정)
+		for (int i = 0; i < resList.size(); i++) {
+			JPanel panel1 = resListPanel.get(i);
+			mainPanel.add(panel1);
+			panel1.setBounds(5, 5+(i*132), 310, 130);
 		}
+		
 		
 		//7. JScrollPane
 		scroll = new JScrollPane();
@@ -345,9 +319,9 @@ public class SearchUI extends JFrame{
 		lineTop.setBounds(10,50,360,10);
 		
 		//9. 하단 메뉴 이동 버튼
-		search = new JButton();		//맛집 검색
-		ranking = new JButton();	//맛집랭킹
-		mypage = new JButton();		//마이페이지
+		searchB = new JButton();		//맛집 검색
+		rankingB = new JButton();	//맛집랭킹
+		mypageB = new JButton();		//마이페이지
 		
 		//9-1. 하단 메뉴 이동 버튼 설정
 		//(1)메뉴1 - 맛집 검색 이미지
@@ -355,37 +329,37 @@ public class SearchUI extends JFrame{
 		Image img1 = image1.getImage();
 		Image setsize = img1.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		ImageIcon searchIcon = new ImageIcon(setsize);
-		search.setIcon(searchIcon);
+		searchB.setIcon(searchIcon);
 		
 		//(2)메뉴2 - 맛집랭킹 이미지
 		ImageIcon image2 = new ImageIcon("rank.png");
 		Image img2 = image2.getImage();
 		Image setsize2 = img2.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		ImageIcon rankIcon = new ImageIcon(setsize2);
-		ranking.setIcon(rankIcon);
+		rankingB.setIcon(rankIcon);
 		
 		//(3)메뉴3 - 마이페이지 이미지
 		ImageIcon image3 = new ImageIcon("mypage.png");
 		Image img3 = image3.getImage();
 		Image setsize3 = img3.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		ImageIcon mypageIcon = new ImageIcon(setsize3);
-		mypage.setIcon(mypageIcon);
+		mypageB.setIcon(mypageIcon);
 		
 		//메뉴(1),(2),(3) 아이콘 크기, 색상 지정
-		search.setBounds(10,550,40,40);
-		search.setBackground(Color.white);
-		search.setBorderPainted(false);
-		search.setFocusPainted(false);
+		searchB.setBounds(10,550,40,40);
+		searchB.setBackground(Color.white);
+		searchB.setBorderPainted(false);
+		searchB.setFocusPainted(false);
 		
-		ranking.setBounds(150,550,40,40);
-		ranking.setBackground(Color.white);
-		ranking.setBorderPainted(false);
-		ranking.setFocusPainted(false);
+		rankingB.setBounds(150,550,40,40);
+		rankingB.setBackground(Color.white);
+		rankingB.setBorderPainted(false);
+		rankingB.setFocusPainted(false);
 		
-		mypage.setBounds(290,550,40,40);
-		mypage.setBackground(Color.white);
-		mypage.setBorderPainted(false);
-		mypage.setFocusPainted(false);
+		mypageB.setBounds(290,550,40,40);
+		mypageB.setBackground(Color.white);
+		mypageB.setBorderPainted(false);
+		mypageB.setFocusPainted(false);
 		
 		//10. 요소 추가
 		//상단 레이아웃
@@ -400,12 +374,40 @@ public class SearchUI extends JFrame{
 		
 		//하단 레이아웃
 		add(lineUnder);
-		add(search);
-		add(ranking);
-		add(mypage);
+		add(searchB);
+		add(rankingB);
+		add(mypageB);
 		
 		//11. 프레임 닫을 시 프로그램 실행 종료
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);		//프레임 보이기
 	}
+	
+	//6. 지역 Select 클래스 - 선택한 지역 리스트 받아오기
+	public class GetLocationList {
+		
+		public JPanel getResListL(String location) {
+			SearchDAO dao = new SearchDAO();
+			ArrayList<String> resListL = dao.searchL(location);
+			int height = 133 * resListL.size();
+			
+			JPanel locationPanel = new JPanel();
+			locationPanel.setLayout(null);
+			locationPanel.setBackground(Color.white);
+			locationPanel.setPreferredSize(new Dimension(310, height));
+			
+			int x = 0;
+			
+			for (int i = 0; i < resList.size(); i++) {
+				if(resListL.contains(resList.get(i).getName())) {
+					JPanel panel0 = resListPanel.get(i);
+					locationPanel.add(panel0);
+					panel0.setBounds(5, 5+(x*132), 310, 130);
+					x++;
+				}
+			}
+			return locationPanel;
+		}
+	}
+
 }

@@ -78,3 +78,15 @@
 
 <p align="center"><img src="https://user-images.githubusercontent.com/64455378/224493413-3be0c363-1ca8-415b-bd46-e71cfe54a495.png" width=250> </p>
 
+<br>
+
+>Update 23.03.12
+
+- 북마크 버튼 추가. 현재 로그인과 연동이 안되어있어서 임의의 ID로 DB에 추가/삭제
+
+- 코드 리팩터링 : 
+
+    DAO : 오라클 DB Connection 부분 기본 메소드화
+    UI : 북마크 이미지 아이콘 만들기, 음식점 판넬 만들기 등 클래스화. 요소(배열, 버튼, 라벨) 이름 바꿈
+
+<p align="center"><img src="https://user-images.githubusercontent.com/64455378/224584510-9430c3ee-c51c-408f-890c-04fd732b13cf.gif" width=500> </p>
