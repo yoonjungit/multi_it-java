@@ -1,4 +1,4 @@
-package app;
+package SearchMenu;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class SearchDAO {
 	public static Connection con;
-	//±âº» ¸Ş¼Òµå : ¿À¶óÅ¬ DB¿¬°á
+	//ê¸°ë³¸ ë©”ì†Œë“œ : ì˜¤ë¼í´ DBì—°ê²°
 	public SearchDAO() {
 		con = null;
 		try {
@@ -20,11 +20,11 @@ public class SearchDAO {
 			String password = "oracle";
 			con = DriverManager.getConnection(url, user, password);
 		} catch (Exception e) {
-			System.out.println("Oracle DB ¿¬°á ¿À·ù");
+			System.out.println("Oracle DB ì—°ê²° ì˜¤ë¥˜");
 		}
 	}
 	
-	//1. ÀüÃ¼ À½½ÄÁ¡ ¸®½ºÆ® ¹Ş¾Æ¿À±â(DTO°´Ã¼·Î ¹è¿­·Î ÀúÀå ÈÄ ¹İÈ¯)
+	//1. ì „ì²´ ìŒì‹ì  ë¦¬ìŠ¤íŠ¸ ë°›ì•„ì˜¤ê¸°(DTOê°ì²´ë¡œ ë°°ì—´ë¡œ ì €ì¥ í›„ ë°˜í™˜)
 	public ArrayList<SearchDTO> search(){
 		ResultSet rs = null;
 		SearchDTO restaurant = new SearchDTO();
@@ -63,13 +63,13 @@ public class SearchDAO {
 		}
 		
 		catch (Exception e) {
-			System.out.println("ÀüÃ¼ À½½ÄÁ¡ ¸®½ºÆ® ¹Ş±â ¿À·ù");
+			System.out.println("ì „ì²´ ìŒì‹ì  ë¦¬ìŠ¤íŠ¸ ë°›ê¸° ì˜¤ë¥˜");
 		}
 	
 		return resList;
 	}
 	
-	//2. Áö¿ªº° À½½ÄÁ¡ ¸®½ºÆ® ¹Ş¾Æ¿À±â (À½½ÄÁ¡ ÀÌ¸§¸¸ String °´Ã¼·Î ¹è¿­¿¡ ÀúÀå ÈÄ ¹İÈ¯)
+	//2. ì§€ì—­ë³„ ìŒì‹ì  ë¦¬ìŠ¤íŠ¸ ë°›ì•„ì˜¤ê¸° (ìŒì‹ì  ì´ë¦„ë§Œ String ê°ì²´ë¡œ ë°°ì—´ì— ì €ì¥ í›„ ë°˜í™˜)
 	public ArrayList<String> searchL(String location){
 		ResultSet rs = null;
 		ArrayList<String> resList = new ArrayList<>();
@@ -86,13 +86,13 @@ public class SearchDAO {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Áö¿ªº° À½½ÄÁ¡ ¸®½ºÆ® ¹Ş±â ¿À·ù");
+			System.out.println("ì§€ì—­ë³„ ìŒì‹ì  ë¦¬ìŠ¤íŠ¸ ë°›ê¸° ì˜¤ë¥˜");
 		}
 	
 		return resList;
 	}
 	
-	//3. ºÏ¸¶Å©ÇÑ ¸®½ºÆ® ¹Ş¾Æ¿À±â (À½½ÄÁ¡ ÀÌ¸§¸¸ String °´Ã¼·Î ¹è¿­¿¡ ÀúÀå ÈÄ ¹İÈ¯)
+	//3. ë¶ë§ˆí¬í•œ ë¦¬ìŠ¤íŠ¸ ë°›ì•„ì˜¤ê¸° (ìŒì‹ì  ì´ë¦„ë§Œ String ê°ì²´ë¡œ ë°°ì—´ì— ì €ì¥ í›„ ë°˜í™˜)
 	public ArrayList<String> searchBookmark(){
 		ResultSet rs = null;
 		ArrayList<String> resListL = new ArrayList<>();
@@ -108,13 +108,13 @@ public class SearchDAO {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("ºÏ¸¶Å© ¸®½ºÆ® ¹Ş±â ¿À·ù");
+			System.out.println("ë¶ë§ˆí¬ ë¦¬ìŠ¤íŠ¸ ë°›ê¸° ì˜¤ë¥˜");
 		}
 	
 		return resListL;
 	}
 	
-	//4. ºÏ¸¶Å© ¼³Á¤/ÇØÁ¦ (Ã³¸®µÈ Çà¼ö(=1) ¹İÈ¯)
+	//4. ë¶ë§ˆí¬ ì„¤ì •/í•´ì œ (ì²˜ë¦¬ëœ í–‰ìˆ˜(=1) ë°˜í™˜)
 	public int bookmarkUpdate(String res_name){
 		ResultSet rs = null;
 		int execute = 0;
@@ -139,7 +139,34 @@ public class SearchDAO {
 			
 		}
 		catch (Exception e) {
-			System.out.println("ºÏ¸¶Å© ¿À·ù");
+			System.out.println("ë¶ë§ˆí¬ ì˜¤ë¥˜");
+		}
+	
+		return execute;
+	}
+	
+	//5. ì¡°íšŒìˆ˜ ì¹´ìš´íŠ¸
+	public int viewUpdate(String res_name){
+		ResultSet rs = null;
+		int execute = 0;
+		
+		try {
+			String sql = "SELECT VIEWS FROM HR.PJ_RESTAURANT WHERE NAME = ?";	
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, res_name);
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				int views = rs.getInt(1)+1;
+				String updateSql = "UPDATE HR.PJ_RESTAURANT SET VIEWS = ? WHERE NAME = ?";
+				PreparedStatement ps1 = con.prepareStatement(updateSql);
+				ps1.setInt(1, views);
+				ps1.setString(2, res_name);
+				execute = ps1.executeUpdate();
+			}
+		}
+		catch (Exception e) {
+			System.out.println("ë¶ë§ˆí¬ ì˜¤ë¥˜");
 		}
 	
 		return execute;

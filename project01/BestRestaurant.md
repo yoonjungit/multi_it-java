@@ -90,3 +90,18 @@
     UI : 북마크 이미지 아이콘 만들기, 음식점 판넬 만들기 등 클래스화. 요소(배열, 버튼, 라벨) 이름 바꿈
 
 <p align="center"><img src="https://user-images.githubusercontent.com/64455378/224584510-9430c3ee-c51c-408f-890c-04fd732b13cf.gif" width=500> </p>
+
+## [4] 구현-3단계 (30일차)
+
+>Update 23.03.13
+
+- 음식점 이미지 클릭 시 상세 페이지 이동 및 조회수 증가
+
+- 상세 페이지 이동 시 현재 창 숨기기 후 상세페이지에서 back 버튼 클릭 시 다시 창 보이기
+
+
+<p align="center"><img src="https://user-images.githubusercontent.com/64455378/224658930-97cbc10e-020e-40d8-b4b0-f86bd4b0e65d.gif" width=900> </p>
+
+해운대암소갈비집 클릭 시 상세페이지 이동. 이때 창 숨김 후 상세페이지에서 back버튼 클릭 시 다시 창 보이기
+
+상세페이지에서 북마크 표시 안된 것은 아직 로그인 연동 x

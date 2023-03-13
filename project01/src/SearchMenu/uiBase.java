@@ -1,4 +1,4 @@
-package app;
+package SearchMenu;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -16,40 +16,40 @@ public class uiBase extends JFrame{
 	}
 	
 	public uiBase() {
-		//1. ÇÁ·¹ÀÓ ¼³Á¤
-		setTitle("ÂğÂğ¸ÀÁı");
+		//1. í”„ë ˆì„ ì„¤ì •
+		setTitle("ì°ì°ë§›ì§‘");
 		setSize(360, 640);
 		setLayout(null);
 		getContentPane().setBackground(Color.white);
 		
-		//2. ÇÏ´Ü ¸Ş´º ÀÌµ¿ ¹öÆ° ±¸ºĞ ¶óÀÎ
-		lineUnder = new JLabel("¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡");
+		//2. í•˜ë‹¨ ë©”ë‰´ ì´ë™ ë²„íŠ¼ êµ¬ë¶„ ë¼ì¸
+		lineUnder = new JLabel("â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€");
 		lineUnder.setForeground(Color.decode("#E74C3C"));
 		lineUnder.setBounds(10,530,360,10);
 		
-		//3. ÇÏ´Ü ¸Ş´º ÀÌµ¿ ¹öÆ°
-		search = new JButton();		//¸ÀÁı °Ë»ö
-		ranking = new JButton();	//¸ÀÁı·©Å·
-		mypage = new JButton();		//¸¶ÀÌÆäÀÌÁö
+		//3. í•˜ë‹¨ ë©”ë‰´ ì´ë™ ë²„íŠ¼
+		search = new JButton();		//ë§›ì§‘ ê²€ìƒ‰
+		ranking = new JButton();	//ë§›ì§‘ë­í‚¹
+		mypage = new JButton();		//ë§ˆì´í˜ì´ì§€
 		
 		
 		
-		//3-1. ÇÏ´Ü ¸Ş´º ÀÌµ¿ ¹öÆ° ¼³Á¤
-		//¸ÀÁı °Ë»ö ÀÌ¹ÌÁö
+		//3-1. í•˜ë‹¨ ë©”ë‰´ ì´ë™ ë²„íŠ¼ ì„¤ì •
+		//ë§›ì§‘ ê²€ìƒ‰ ì´ë¯¸ì§€
 		ImageIcon image1 = new ImageIcon("search.png");
 		Image img1 = image1.getImage();
 		Image setsize = img1.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		ImageIcon searchIcon = new ImageIcon(setsize);
 		search.setIcon(searchIcon);
 		
-		//¸ÀÁı·©Å· ÀÌ¹ÌÁö
+		//ë§›ì§‘ë­í‚¹ ì´ë¯¸ì§€
 		ImageIcon image2 = new ImageIcon("rank.png");
 		Image img2 = image2.getImage();
 		Image setsize2 = img2.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		ImageIcon rankIcon = new ImageIcon(setsize2);
 		ranking.setIcon(rankIcon);
 		
-		//¸¶ÀÌÆäÀÌÁö ÀÌ¹ÌÁö
+		//ë§ˆì´í˜ì´ì§€ ì´ë¯¸ì§€
 		ImageIcon image3 = new ImageIcon("mypage.png");
 		Image img3 = image3.getImage();
 		Image setsize3 = img3.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -74,15 +74,15 @@ public class uiBase extends JFrame{
 		mypage.setFocusPainted(false);
 		
 		
-		//¿ä¼Ò Ãß°¡
+		//ìš”ì†Œ ì¶”ê°€
 		add(lineUnder);
 		add(search);
 		add(ranking);
 		add(mypage);
 		
-		//ÇÁ·¹ÀÓ ´İÀ» ½Ã ÇÁ·Î±×·¥ ½ÇÇà Á¾·á
+		//í”„ë ˆì„ ë‹«ì„ ì‹œ í”„ë¡œê·¸ë¨ ì‹¤í–‰ ì¢…ë£Œ
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);		//ÇÁ·¹ÀÓ º¸ÀÌ±â
+		setVisible(true);		//í”„ë ˆì„ ë³´ì´ê¸°
 	}
 	
 }

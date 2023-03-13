@@ -1,4 +1,4 @@
-package app;
+package SearchMenu;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,11 +18,13 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+import DetailedPage.DetailedUI;
+
 public class SearchUI extends JFrame{
 	JButton searchB, rankingB, mypageB;
 	JLabel lineUnder, lineTop;
-	JPanel mainPanel;
 	JScrollPane scroll;
+	public static SearchUI ui = new SearchUI();
 	
 	public static ArrayList<SearchDTO> resList = new ArrayList<SearchDTO>();
 	public static ArrayList<JPanel> resListPanel = new ArrayList<JPanel>();
@@ -31,26 +33,30 @@ public class SearchUI extends JFrame{
 	public static ArrayList<String> bookmarkList = new ArrayList<>();
 	
 	public static void main(String[] args) {
-		//1. ±âº» ¸Ş¼Òµå : À½½ÄÁ¡ ¸®½ºÆ® ÀüÃ¼ ¹Ş¾Æ¿À±â
-		SearchUI ui = new SearchUI();
-		//2. È¸¿ø ºÏ¸¶Å© À½½ÄÁ¡ ¸®½ºÆ® ¹Ş±â
+		//1. ê¸°ë³¸ ë©”ì†Œë“œ : ìŒì‹ì  ë¦¬ìŠ¤íŠ¸ ì „ì²´ ë°›ì•„ì˜¤ê¸°
+		ui = new SearchUI();
+		//2. íšŒì› ë¶ë§ˆí¬ ìŒì‹ì  ë¦¬ìŠ¤íŠ¸ ë°›ê¸°
 		GetBookmark bm = new GetBookmark();	
-		//3. ºÏ¸¶Å© ¾ÆÀÌÄÜ ¸¸µé±â
+		//3. ë¶ë§ˆí¬ ì•„ì´ì½˜ ë§Œë“¤ê¸°
 		SetStarIcon star = new SetStarIcon();
-		//4. ÀüÃ¼ À½½ÄÁ¡ ÆÇ³Ú ¸¸µé±â
+		//4. ì „ì²´ ìŒì‹ì  íŒë„¬ ë§Œë“¤ê¸°
 		MakePanel makePanelAll = new MakePanel();
-		//5. ÇÁ·Î±×·¥ ½ÇÇà
+		//5. í”„ë¡œê·¸ë¨ ì‹¤í–‰
 		ui.frameView();
-		//6. Áö¿ª À½½ÄÁ¡ ¸®½ºÆ® ¹Ş±â
+		//6. ì§€ì—­ ìŒì‹ì  ë¦¬ìŠ¤íŠ¸ ë°›ê¸°
+	}
+	//ë‹¤ë¥¸ ë©”ë‰´ì—ì„œ ë’¤ë¡œê°€ê¸° ë²„íŠ¼ í´ë¦­ ì‹œ í”„ë ˆì„ ë‹¤ì‹œ ë³´ì´ê¸° 
+	public void back() {
+		ui.setVisible(true);
 	}
 	
-	//1. ±âº» ¸Ş¼Òµå : À½½ÄÁ¡ ¸®½ºÆ® ÀüÃ¼ ¹Ş¾Æ¿À±â
+	//1. ê¸°ë³¸ ë©”ì†Œë“œ : ìŒì‹ì  ë¦¬ìŠ¤íŠ¸ ì „ì²´ ë°›ì•„ì˜¤ê¸°
 	public SearchUI() {
 		SearchDAO getResList = new SearchDAO();
 		resList = getResList.search();
 	}
 	
-	//2. È¸¿ø ºÏ¸¶Å© À½½ÄÁ¡ ¸®½ºÆ® ¹Ş±â
+	//2. íšŒì› ë¶ë§ˆí¬ ìŒì‹ì  ë¦¬ìŠ¤íŠ¸ ë°›ê¸°
 	public static class GetBookmark{
 		public GetBookmark() {
 			SearchDAO dao = new SearchDAO();
@@ -58,7 +64,9 @@ public class SearchUI extends JFrame{
 		}
 	}
 	
-	//3. ºÏ¸¶Å© ¾ÆÀÌÄÜ ¸¸µé±â
+
+	
+	//3. ë¶ë§ˆí¬ ì•„ì´ì½˜ ë§Œë“¤ê¸°
 	public static class SetStarIcon{
 		public SetStarIcon() {
 			ImageIcon star1 = new ImageIcon("full_star.jpg");
@@ -73,76 +81,83 @@ public class SearchUI extends JFrame{
 		}
 	}
 	
-	//4. À½½ÄÁ¡ ÆÇ³Ú ¸¸µé±â
+	//4. ìŒì‹ì  íŒë„¬ ë§Œë“¤ê¸°
 	public static class MakePanel {
 		public MakePanel() {
 			for (int i = 0; i < resList.size(); i++) {
-				//1. À½½ÄÁ¡ ÆÇ³Ú
+				//1. ìŒì‹ì  íŒë„¬
 				JPanel resPanel = new JPanel();
 				resPanel.setPreferredSize(new Dimension(310, 130));
 				resPanel.setLayout(null);
 				resPanel.setBackground(Color.white);
 				resPanel.setBorder(new TitledBorder(new LineBorder(Color.decode("#E74C3C"))));
 				
-				//2. À½½ÄÁ¡ ÀÌ¹ÌÁö ¹öÆ°
+				//2. ìŒì‹ì  ì´ë¯¸ì§€ ë²„íŠ¼
 				JButton imagebutton = new JButton("");
-				//2-1. ¹öÆ° ÀÌ¹ÌÁö »çÀÌÁî Á¶Á¤ ÈÄ ¼³Á¤
+
+				//2-1. ë²„íŠ¼ ì´ë¯¸ì§€ ì‚¬ì´ì¦ˆ ì¡°ì • í›„ ì„¤ì •
 				ImageIcon img = new ImageIcon(resList.get(i).getImg());
 				Image getImg = img.getImage();
 				Image setImgSize = getImg.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
 				ImageIcon imgIcon = new ImageIcon(setImgSize);
-				imagebutton.setIcon(imgIcon);	//ÀÌ¹ÌÁö ¼³Á¤
-				//2-2. ÀÌ¹ÌÁö ¹öÆ° - Å×µÎ¸® ¾ø¾Ö±â / ¹è°æ»ö ¾ø¾Ö±â / Å©±â, À§Ä¡ ¼³Á¤
+				imagebutton.setIcon(imgIcon);	//ì´ë¯¸ì§€ ì„¤ì •
+				
+				//2-2. ì´ë¯¸ì§€ ë²„íŠ¼ - í…Œë‘ë¦¬ ì—†ì• ê¸° / ë°°ê²½ìƒ‰ ì—†ì• ê¸° / í¬ê¸°, ìœ„ì¹˜ ì„¤ì •
 				imagebutton.setBorderPainted(false);
 				imagebutton.setFocusPainted(false);
 				imagebutton.setBounds(5, 5, 120, 120);
-				//2-3. ÀÌ¹ÌÁö ¹öÆ° Å¬¸¯ ±â´É
+				
+				//2-3. ì´ë¯¸ì§€ ë²„íŠ¼ í´ë¦­ ê¸°ëŠ¥
 				String resName = resList.get(i).getName();
 				imagebutton.addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						System.out.println(resName +"·Î ÀÌµ¿");
+						SearchDAO dao = new SearchDAO();		//ì¡°íšŒìˆ˜ +1
+						dao.viewUpdate(resName);
+						System.out.println(resName +" ì´ë™ì¤‘");	//ìƒì„¸í˜ì´ì§€ ì´ë™
+						DetailedUI detailedUI = new DetailedUI(resName);
+						ui.setVisible(false);
 					}
 				});
 				
-				//3. À½½ÄÁ¡ ¼³¸í ¶óº§ - ³»¿ë / À§Ä¡, Å©±â
+				//3. ìŒì‹ì  ì„¤ëª… ë¼ë²¨ - ë‚´ìš© / ìœ„ì¹˜, í¬ê¸°
 				JLabel descriplabel = new JLabel("<html>" + resList.get(i).getCategory()
 						+"<br>" + resList.get(i).getName() 
 						+"<br>" + resList.get(i).getAddress() + "</html>");
 				descriplabel.setBounds(130, 5, 180, 90);
 				
-				//4. º°Á¡ ÆÇ³Ú - ·¹ÀÌ¾Æ¿ô ¾ø¾Ö±â / ¹è°æ»ö : Èò»ö / À§Ä¡, Å©±â ¼³Á¤
+				//4. ë³„ì  íŒë„¬ - ë ˆì´ì•„ì›ƒ ì—†ì• ê¸° / ë°°ê²½ìƒ‰ : í°ìƒ‰ / ìœ„ì¹˜, í¬ê¸° ì„¤ì •
 				JPanel rating = new JPanel();
 				rating.setLayout(null);
 				rating.setBackground(Color.white);
 				rating.setBounds(130, 100, 170, 20);
 				
-				//4-1. °¢ Áöµµº° ¶óº§, º°Á¡ ¹Ş¾Æ¿À±â
-				JLabel naver = new JLabel(Float.toString(resList.get(i).getnStars()));	//³×ÀÌ¹öÁöµµ
-				JLabel kakao = new JLabel(Float.toString(resList.get(i).getkStars()));	//Ä«Ä«¿À¸Ê
-				JLabel google = new JLabel(Float.toString(resList.get(i).getgStars()));	//±¸±Û¸Ê
+				//4-1. ê° ì§€ë„ë³„ ë¼ë²¨, ë³„ì  ë°›ì•„ì˜¤ê¸°
+				JLabel naver = new JLabel(Float.toString(resList.get(i).getnStars()));	//ë„¤ì´ë²„ì§€ë„
+				JLabel kakao = new JLabel(Float.toString(resList.get(i).getkStars()));	//ì¹´ì¹´ì˜¤ë§µ
+				JLabel google = new JLabel(Float.toString(resList.get(i).getgStars()));	//êµ¬ê¸€ë§µ
 				
-				//4-2. °¢ Áöµµº° ¶óº§¿¡ ÀÌ¹ÌÁö ³Ö±â
-				ImageIcon iconN = new ImageIcon("nMap.png");		//³×ÀÌ¹öÁöµµ
+				//4-2. ê° ì§€ë„ë³„ ë¼ë²¨ì— ì´ë¯¸ì§€ ë„£ê¸°
+				ImageIcon iconN = new ImageIcon("nMap.png");		//ë„¤ì´ë²„ì§€ë„
 				Image nMap = iconN.getImage();
 				Image setsize1 = nMap.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 				ImageIcon naverIcon1 = new ImageIcon(setsize1);
 				naver.setIcon(naverIcon1);
 				
-				ImageIcon iconK = new ImageIcon("kMap.png");		//Ä«Ä«¿À¸Ê
+				ImageIcon iconK = new ImageIcon("kMap.png");		//ì¹´ì¹´ì˜¤ë§µ
 				Image kMap = iconK.getImage();
 				Image setsize2 = kMap.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 				ImageIcon kakaoIcon2 = new ImageIcon(setsize2);
 				kakao.setIcon(kakaoIcon2);
 
-				ImageIcon iconG = new ImageIcon("gMap.png");		//±¸±Û¸Ê
+				ImageIcon iconG = new ImageIcon("gMap.png");		//êµ¬ê¸€ë§µ
 				Image gMap = iconG.getImage();
 				Image setsize3 = gMap.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 				ImageIcon googleIcon3 = new ImageIcon(setsize3);
 				google.setIcon(googleIcon3);
 				
-				//4-3. °¢ Áöµµ ¶óº§ º°Á¡ ÆÇ³Ú¿¡ ³Ö±â / À§Ä¡, Å©±â ÁöÁ¤
+				//4-3. ê° ì§€ë„ ë¼ë²¨ ë³„ì  íŒë„¬ì— ë„£ê¸° / ìœ„ì¹˜, í¬ê¸° ì§€ì •
 				naver.setBounds(5, 0, 53, 20);
 				kakao.setBounds(60, 0, 53, 20);
 				google.setBounds(115, 0, 53, 20);
@@ -151,28 +166,28 @@ public class SearchUI extends JFrame{
 				rating.add(kakao);
 				rating.add(google);
 				
-				//5. ºÏ¸¶Å©
+				//5. ë¶ë§ˆí¬
 				JButton bookmark = new JButton();
-				// ¸¸¾à È¸¿ø ºÏ¸¶Å© ¸®½ºÆ®¿¡ ÇØ´ç À½½ÄÁ¡ÀÌ ÀÖÀ¸¸é -> ²ËÂù º°, ±×¿Ü ºó º°
+				// ë§Œì•½ íšŒì› ë¶ë§ˆí¬ ë¦¬ìŠ¤íŠ¸ì— í•´ë‹¹ ìŒì‹ì ì´ ìˆìœ¼ë©´ -> ê½‰ì°¬ ë³„, ê·¸ì™¸ ë¹ˆ ë³„
 				if (bookmarkList.contains(resList.get(i).getName())) {
 					bookmark.setIcon(fullStarIcon);
 				} else {
 					bookmark.setIcon(starIcon);
 				}
-				//5-1. ºÏ¸¶Å© - À§Ä¡, Å©±â ¼³Á¤ / ¹è°æ»ö : Èò»ö / Å×µÎ¸® ¾ø¾Ö±â
+				//5-1. ë¶ë§ˆí¬ - ìœ„ì¹˜, í¬ê¸° ì„¤ì • / ë°°ê²½ìƒ‰ : í°ìƒ‰ / í…Œë‘ë¦¬ ì—†ì• ê¸°
 				bookmark.setBounds(270, 10, 20, 20);
 				bookmark.setBackground(Color.white);
 				bookmark.setBorderPainted(false);
-				//5-2. ºÏ¸¶Å© Å¬¸¯ ±â´É
+				//5-2. ë¶ë§ˆí¬ í´ë¦­ ê¸°ëŠ¥
 				bookmark.addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						SearchDAO dao = new SearchDAO();
-						//À½½ÄÁ¡ ÀÌ¸§, È¸¿ø ID(¾ÆÁ÷ ·Î±×ÀÎ ¿¬µ¿ ÀüÀÌ¹Ç·Î ÀÓÀÇÀÇ ID)·Î Select ½ÇÇà ÈÄ 
-						//ÇØ´ç µ¥ÀÌÅÍ°¡ ºÏ¸¶Å©DB¸®½ºÆ®¿¡
-						//ÀÖÀ¸¸é ºÏ¸¶Å© ÇØÁ¦(²ËÂù º°->ºóº°)
-						//¾øÀ¸¸é ºÏ¸¶Å© ¼³Á¤(ºóº°->²ËÂù º°)
+						//ìŒì‹ì  ì´ë¦„, íšŒì› ID(ì•„ì§ ë¡œê·¸ì¸ ì—°ë™ ì „ì´ë¯€ë¡œ ì„ì˜ì˜ ID)ë¡œ Select ì‹¤í–‰ í›„ 
+						//í•´ë‹¹ ë°ì´í„°ê°€ ë¶ë§ˆí¬DBë¦¬ìŠ¤íŠ¸ì—
+						//ìˆìœ¼ë©´ ë¶ë§ˆí¬ í•´ì œ(ê½‰ì°¬ ë³„->ë¹ˆë³„)
+						//ì—†ìœ¼ë©´ ë¶ë§ˆí¬ ì„¤ì •(ë¹ˆë³„->ê½‰ì°¬ ë³„)
 						int bmUpdate = dao.bookmarkUpdate(resName);
 						if (bookmark.getIcon().equals(fullStarIcon)) {
 							bookmark.setIcon(starIcon);
@@ -182,7 +197,7 @@ public class SearchUI extends JFrame{
 					}
 				});
 				
-				//6. À½½ÄÁ¡ ÆÇ³Ú¿¡ ÀÌ¹ÌÁö ¹öÆ°, ¼³¸í ¶óº§, º°Á¡ ÆÇ³Ú ³Ö±â
+				//6. ìŒì‹ì  íŒë„¬ì— ì´ë¯¸ì§€ ë²„íŠ¼, ì„¤ëª… ë¼ë²¨, ë³„ì  íŒë„¬ ë„£ê¸°
 				resPanel.add(imagebutton);
 				resPanel.add(descriplabel);
 				resPanel.add(rating);
@@ -195,30 +210,30 @@ public class SearchUI extends JFrame{
 	
 	public void frameView() {
 
-		//1. ÇÁ·¹ÀÓ - Å¸ÀÌÆ² / »çÀÌÁî / ·¹ÀÌ¾Æ¿ô / ¹è°æ»ö : Èò»ö
-		setTitle("ÂğÂğ¸ÀÁı");
+		//1. í”„ë ˆì„ - íƒ€ì´í‹€ / ì‚¬ì´ì¦ˆ / ë ˆì´ì•„ì›ƒ / ë°°ê²½ìƒ‰ : í°ìƒ‰
+		setTitle("ì°ì°ë§›ì§‘");
 		setSize(360, 640);
 		setLayout(null);
 		getContentPane().setBackground(Color.white);
 
-		//2-1. Å¸ÀÌÆ² ¶óº§
-		JLabel title = new JLabel("¸ÀÁı °Ë»ö");
-		Font titleFont = new Font("µ¸¿ò", 1, 30);
+		//2-1. íƒ€ì´í‹€ ë¼ë²¨
+		JLabel title = new JLabel("ë§›ì§‘ ê²€ìƒ‰");
+		Font titleFont = new Font("ë‹ì›€", 1, 30);
 		title.setFont(titleFont);
 		title.setBounds(10,10,360,40);
 		title.setForeground(Color.decode("#E74C3C"));
 		
-		//2-2. ·Î°í ¶óº§(ÀÌ¹ÌÁö)
+		//2-2. ë¡œê³  ë¼ë²¨(ì´ë¯¸ì§€)
 		JLabel logo = new JLabel();
 		ImageIcon logo1 = new ImageIcon("icon_color.png");
 		logo.setIcon(logo1);
 		logo.setBounds(300, 10, 50, 50);
 
-		//3. Áö¿ª¼±ÅÃ ¹öÆ° - ¹®±¸ / À§Ä¡, Å©±â / ¹è°æ,±Û¾¾Ã¼ »ö / Å×µÎ¸® ¾ø¾Ö±â
-		JButton seoul = new JButton("¼­¿ï");
-		JButton anyang = new JButton("¾È¾ç");
-		JButton chuncheon = new JButton("ÃáÃµ");
-		JButton busan = new JButton("ºÎ»ê");
+		//3. ì§€ì—­ì„ íƒ ë²„íŠ¼ - ë¬¸êµ¬ / ìœ„ì¹˜, í¬ê¸° / ë°°ê²½,ê¸€ì”¨ì²´ ìƒ‰ / í…Œë‘ë¦¬ ì—†ì• ê¸°
+		JButton seoul = new JButton("ì„œìš¸");
+		JButton anyang = new JButton("ì•ˆì–‘");
+		JButton chuncheon = new JButton("ì¶˜ì²œ");
+		JButton busan = new JButton("ë¶€ì‚°");
 		
 		seoul.setBounds(5, 60, 70, 20);
 		anyang.setBounds(90, 60, 70, 20);
@@ -240,7 +255,7 @@ public class SearchUI extends JFrame{
 		chuncheon.setBorder(null);
 		busan.setBorder(null);
 		
-		//4. Áö¿ª ¼±ÅÃ ¹öÆ° ±â´É
+		//4. ì§€ì—­ ì„ íƒ ë²„íŠ¼ ê¸°ëŠ¥
 		seoul.addActionListener(new ActionListener() {
 			
 			@Override
@@ -285,15 +300,15 @@ public class SearchUI extends JFrame{
 			}
 		});
 		
-		//5. ¸ŞÀÎ JPanel - ·¹ÀÌ¾Æ¿ô ¾ø¾Ö±â / ¹è°æ»ö : Èò»ö / »çÀÌÁî ÁöÁ¤
-		mainPanel = new JPanel();
+		//5. ë©”ì¸ JPanel - ë ˆì´ì•„ì›ƒ ì—†ì• ê¸° / ë°°ê²½ìƒ‰ : í°ìƒ‰ / ì‚¬ì´ì¦ˆ ì§€ì •
+		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(null);
 		mainPanel.setBackground(Color.white);
 		int height = 133 * resList.size();
 		mainPanel.setPreferredSize(new Dimension(310, height));
 
 	
-//		6. °¢ À½½ÄÁ¡ ÆÇ³Ú (À§Ä¡, Å©±â ÁöÁ¤)
+//		6. ê° ìŒì‹ì  íŒë„¬ (ìœ„ì¹˜, í¬ê¸° ì§€ì •)
 		for (int i = 0; i < resList.size(); i++) {
 			JPanel panel1 = resListPanel.get(i);
 			mainPanel.add(panel1);
@@ -303,49 +318,49 @@ public class SearchUI extends JFrame{
 		
 		//7. JScrollPane
 		scroll = new JScrollPane();
-		scroll.setBounds(0, 100, 335, 420); // Height -> ¸ŞÀÎ ÆĞ³Îº¸´Ù ÀÛ°Ô
-		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED); // ¼¼·Î ½ºÅ©·Ñ ÇÊ¿äÇÏ¸é »ı±â°Ô
-		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // °¡·Î ½ºÅ©·ÑÀº Àı´ë X
-		scroll.getVerticalScrollBar().setUnitIncrement(16);		//½ºÅ©·Ñ ¼Óµµ
-		scroll.setViewportView(mainPanel); // ½ºÅ©·ÑÆäÀÎ¿¡ ¸ŞÀÎÆĞ³Î ³Ö±â
+		scroll.setBounds(0, 100, 335, 420); // Height -> ë©”ì¸ íŒ¨ë„ë³´ë‹¤ ì‘ê²Œ
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED); // ì„¸ë¡œ ìŠ¤í¬ë¡¤ í•„ìš”í•˜ë©´ ìƒê¸°ê²Œ
+		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // ê°€ë¡œ ìŠ¤í¬ë¡¤ì€ ì ˆëŒ€ X
+		scroll.getVerticalScrollBar().setUnitIncrement(16);		//ìŠ¤í¬ë¡¤ ì†ë„
+		scroll.setViewportView(mainPanel); // ìŠ¤í¬ë¡¤í˜ì¸ì— ë©”ì¸íŒ¨ë„ ë„£ê¸°
 		scroll.setBorder(null);
 		
-		//8. »óÇÏ´Ü ±¸ºĞ ¶óÀÎ
-		lineUnder = new JLabel("¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡");
-		lineTop = new JLabel("¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡");
+		//8. ìƒí•˜ë‹¨ êµ¬ë¶„ ë¼ì¸
+		lineUnder = new JLabel("â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€");
+		lineTop = new JLabel("â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€");
 		lineUnder.setForeground(Color.decode("#E74C3C"));
 		lineTop.setForeground(Color.decode("#E74C3C"));
 		lineUnder.setBounds(10,530,360,10);
 		lineTop.setBounds(10,50,360,10);
 		
-		//9. ÇÏ´Ü ¸Ş´º ÀÌµ¿ ¹öÆ°
-		searchB = new JButton();		//¸ÀÁı °Ë»ö
-		rankingB = new JButton();	//¸ÀÁı·©Å·
-		mypageB = new JButton();		//¸¶ÀÌÆäÀÌÁö
+		//9. í•˜ë‹¨ ë©”ë‰´ ì´ë™ ë²„íŠ¼
+		searchB = new JButton();		//ë§›ì§‘ ê²€ìƒ‰
+		rankingB = new JButton();	//ë§›ì§‘ë­í‚¹
+		mypageB = new JButton();		//ë§ˆì´í˜ì´ì§€
 		
-		//9-1. ÇÏ´Ü ¸Ş´º ÀÌµ¿ ¹öÆ° ¼³Á¤
-		//(1)¸Ş´º1 - ¸ÀÁı °Ë»ö ÀÌ¹ÌÁö
+		//9-1. í•˜ë‹¨ ë©”ë‰´ ì´ë™ ë²„íŠ¼ ì„¤ì •
+		//(1)ë©”ë‰´1 - ë§›ì§‘ ê²€ìƒ‰ ì´ë¯¸ì§€
 		ImageIcon image1 = new ImageIcon("search.png");
 		Image img1 = image1.getImage();
 		Image setsize = img1.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		ImageIcon searchIcon = new ImageIcon(setsize);
 		searchB.setIcon(searchIcon);
 		
-		//(2)¸Ş´º2 - ¸ÀÁı·©Å· ÀÌ¹ÌÁö
+		//(2)ë©”ë‰´2 - ë§›ì§‘ë­í‚¹ ì´ë¯¸ì§€
 		ImageIcon image2 = new ImageIcon("rank.png");
 		Image img2 = image2.getImage();
 		Image setsize2 = img2.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		ImageIcon rankIcon = new ImageIcon(setsize2);
 		rankingB.setIcon(rankIcon);
 		
-		//(3)¸Ş´º3 - ¸¶ÀÌÆäÀÌÁö ÀÌ¹ÌÁö
+		//(3)ë©”ë‰´3 - ë§ˆì´í˜ì´ì§€ ì´ë¯¸ì§€
 		ImageIcon image3 = new ImageIcon("mypage.png");
 		Image img3 = image3.getImage();
 		Image setsize3 = img3.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		ImageIcon mypageIcon = new ImageIcon(setsize3);
 		mypageB.setIcon(mypageIcon);
 		
-		//¸Ş´º(1),(2),(3) ¾ÆÀÌÄÜ Å©±â, »ö»ó ÁöÁ¤
+		//ë©”ë‰´(1),(2),(3) ì•„ì´ì½˜ í¬ê¸°, ìƒ‰ìƒ ì§€ì •
 		searchB.setBounds(10,550,40,40);
 		searchB.setBackground(Color.white);
 		searchB.setBorderPainted(false);
@@ -361,29 +376,51 @@ public class SearchUI extends JFrame{
 		mypageB.setBorderPainted(false);
 		mypageB.setFocusPainted(false);
 		
-		//10. ¿ä¼Ò Ãß°¡
-		//»ó´Ü ·¹ÀÌ¾Æ¿ô
+		//9-2. ë²„íŠ¼ ê¸°ëŠ¥ (ë©”ë‰´ ì´ë™)
+		searchB.addActionListener(new ActionListener() {
+			
+			JPanel searchmenuPanel = new JPanel();
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				searchmenuPanel.setLayout(null);
+				searchmenuPanel.setBackground(Color.white);
+				int height = 133 * resList.size();
+				searchmenuPanel.setPreferredSize(new Dimension(310, height));
+				
+				for (int i = 0; i < resList.size(); i++) {
+					JPanel panel1 = resListPanel.get(i);
+					searchmenuPanel.add(panel1);
+					panel1.setBounds(5, 5+(i*132), 310, 130);
+				}
+				scroll.setViewportView(null);
+				scroll.setViewportView(searchmenuPanel); // ìŠ¤í¬ë¡¤í˜ì¸ì— ë©”ì¸íŒ¨ë„ ë„£ê¸°
+			}
+		});
+		
+		//10. ìš”ì†Œ ì¶”ê°€
+		//ìƒë‹¨ ë ˆì´ì•„ì›ƒ
 		add(title);
 		add(lineTop);
 		add(logo);
 		
-		//Áö¿ª ¼±ÅÃ ¹öÆ°
+		//ì§€ì—­ ì„ íƒ ë²„íŠ¼
 		add(seoul);add(anyang);add(chuncheon);add(busan);
-		//¸ŞÀÎ À½½Ä ¸®½ºÆ®
+		//ë©”ì¸ ìŒì‹ ë¦¬ìŠ¤íŠ¸
 		add(scroll);
 		
-		//ÇÏ´Ü ·¹ÀÌ¾Æ¿ô
+		//í•˜ë‹¨ ë ˆì´ì•„ì›ƒ
 		add(lineUnder);
 		add(searchB);
 		add(rankingB);
 		add(mypageB);
 		
-		//11. ÇÁ·¹ÀÓ ´İÀ» ½Ã ÇÁ·Î±×·¥ ½ÇÇà Á¾·á
+		//11. í”„ë ˆì„ ë‹«ì„ ì‹œ í”„ë¡œê·¸ë¨ ì‹¤í–‰ ì¢…ë£Œ
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);		//ÇÁ·¹ÀÓ º¸ÀÌ±â
+		setVisible(true);		//í”„ë ˆì„ ë³´ì´ê¸°
 	}
 	
-	//6. Áö¿ª Select Å¬·¡½º - ¼±ÅÃÇÑ Áö¿ª ¸®½ºÆ® ¹Ş¾Æ¿À±â
+	//6. ì§€ì—­ Select í´ë˜ìŠ¤ - ì„ íƒí•œ ì§€ì—­ ë¦¬ìŠ¤íŠ¸ ë°›ì•„ì˜¤ê¸°
 	public class GetLocationList {
 		
 		public JPanel getResListL(String location) {

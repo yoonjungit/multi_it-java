@@ -1,4 +1,4 @@
-package app;
+package SearchMenu;
 
 public class SearchDTO {
 	private String name;
