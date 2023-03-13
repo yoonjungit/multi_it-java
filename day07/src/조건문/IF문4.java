@@ -1,8 +1,8 @@
-package Á¶°Ç¹®;
+package ???;
 
 import java.util.Date;
 
-public class IF¹®4 {
+public class IF?4 {
 	public static void main(String[] args) {
 		Date date = new Date();
 		
@@ -16,28 +16,28 @@ public class IF¹®4 {
 		int hour = date.getHours();
 		
 		if (hour < 11) {
-			System.out.println("±Â¸ð´×");
+			System.out.println("??");
 		}else if (hour < 14) {
-			System.out.println("±Â¿¡ÇÁÅÍ´«");
+			System.out.println("?? ?? ?");
 		}else if (hour < 20) {
-			System.out.println("±ÂÀÌºê´×");
+			System.out.println("?? ~ ??");
 		}else {
-			System.out.println("±Â³ªÀÕ");
+			System.out.println("?");
 		}
 		
 		int month = date.getMonth();
 		switch (month) {
 		case 3: case 4: case 5:
-			System.out.println("º½");
+			System.out.println("?");
 			break;
 		case 6: case 7: case 8:
-			System.out.println("¿©¸§");
+			System.out.println("??");
 			break;
 		case 9: case 10: case 11:
-			System.out.println("°¡À»");
+			System.out.println("??");
 			break;
 		default:
-			System.out.println("°Ü¿ï");
+			System.out.println("??");
 			break;
 		}
 		

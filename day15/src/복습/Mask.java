@@ -1,4 +1,4 @@
-package º¹½À;
+package ??;
 
 public class Mask {
 	String color;

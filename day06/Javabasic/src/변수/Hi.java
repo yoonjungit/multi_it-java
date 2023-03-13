@@ -1,4 +1,4 @@
-package º¯¼ö;
+package ??;
 
 public class Hi {
 

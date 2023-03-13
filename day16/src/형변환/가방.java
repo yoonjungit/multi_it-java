@@ -1,16 +1,17 @@
-package Çüº¯È¯;
+package ???;
 
 import java.util.HashSet;
 
-public class °¡¹æ {
+public class ?? {
 
 	public static void main(String[] args) {
 		HashSet bag = new HashSet();
-		bag.add("ÈŞ´ëÆù");
-		bag.add("ÈŞÁö");
-		bag.add("º¼Ææ");
+		bag.add("???");		//??? ??
+		bag.add("??");
+		bag.add("??");
+		bag.add("??");
 		System.out.println(bag);
-		bag.add("º¼Ææ");		//Áßº¹Á¦°Å
+		bag.add("???");	//?? ???
 		System.out.println(bag);
 	}
 
