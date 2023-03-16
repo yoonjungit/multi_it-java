@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품 등록</title>
+<style type="text/css">
+	body {
+	background : #d7b1f0;
+	}
+	button {
+	background : #66f2f0;
+	}
+	.t1{
+	background : #f7a8dd;
+	width : 150px;
+	text-align : center;
+	}
+	#b1{
+	background : #fabc02;
+	border: none;
+	}
+</style>
+</head>
+<body>
+<h3>상품등록 페이지</h3>
+
+<hr>
+<a href = "product.html">
+	<button>첫 페이지로</button>
+</a>
+<form action = "insert3.jsp">
+<table border="1">
+	<tr>
+		<td class="t1">상품ID </td>
+		<td>
+			<input name = "id">		<!-- name은 dto의 변수명, 대/소문자와 똑같이 맞춰야 함 -->
+		</td>
+	</tr>
+	<tr>
+		<td class="t1">상품 이름 </td>
+		<td>
+			<input name = "name">
+		</td>
+	</tr>
+	<tr>
+		<td class="t1">상품 설명</td>
+		<td>
+			<input name = "content">
+		</td>
+	</tr>
+	<tr>
+		<td class="t1">상품 가격</td>
+		<td>
+			<input name = "price">
+		</td>
+	</tr>
+	<tr>
+		<td class="t1">제조 회사</td>
+		<td>
+			<input name = "company">
+		</td>
+	</tr>
+	<tr>
+		<td class="t1">상품 이미지</td>
+		<td>
+			<input name = "img">
+		</td>
+	</tr>
+	<tr>
+		<td colspan = "2">
+			<button id = "b1">상품등록</button>
+	</tr>
+</table>
+</form> 
+<!-- 입력한 값들이 서버(톰킷)으로 전달될때는 form태그 안에 있어야 함. -->
+</body>
+</html>

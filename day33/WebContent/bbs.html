@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<style type="text/css">
+	body {
+	background : #d7b1f0;
+	}
+	button {
+	background : #66f2f0;
+	}
+	.t1{
+	background : #f7a8dd;
+	width : 150px;
+	text-align : center;
+	}
+</style>
+</head>
+<body>
+<h3>게시판 페이지</h3>
+<a href = "index.html"><button style = "width : 250px; height : 50px">메인으로</button></a>
+	<hr>
+	<table border="1">
+		<tr>
+			<td class="t1">게시판 글쓰기</td>
+			<td><a href="insert2.html">
+					<button>글 쓰기</button>
+			</a></td>
+		</tr>
+		<tr>
+			<td class="t1">게시판 글 삭제</td>
+			<td><a href="delete2.html">
+					<button>글 삭제</button>
+			</a></td>
+		</tr>
+		<tr>
+			<td class="t1">게시판 글 수정</td>
+			<td><a href="update2.html">
+					<button>글 수정</button>
+			</a></td>
+		</tr>
+		<tr>
+			<td class="t1">게시판 글 검색(상세페이지)</td>
+			<td><a href="select2.html">
+					<button>글 검색</button>
+			</a></td>
+		</tr>
+		<tr>
+			<td class="t1">게시판 전체 목록<br>
+			</td>
+			<td>
+			<button onclick = "location.href = 'selectAll2.jsp'"> 전체 글 보기</button>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>
