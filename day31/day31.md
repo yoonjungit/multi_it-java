@@ -121,6 +121,83 @@ TEL : <%= tel %><br>
 
 <p align="center"><img src="https://user-images.githubusercontent.com/64455378/225021217-d2e79901-00ae-4e2e-909e-d706dbe33926.gif" width=700> </p>
 
+> 23.03.16추가
+
+이때 JSP가 HTML에서 사용자가 입력한 값을 받아오기 위해서는 다음과 같이 `form` 태그를 사용해야 하며, 이 태그 안에 있는 데이터만 가져올 수 있다. 더불어 `action` 속성으로 다음과 같이 데이터가 도착할 문서의 주소를 지정해준다.
+
+```html
+<!-- insert.html -->
+<!-- <form action = URL> -->
+<form action = "insert.jsp"> 
+<table border="1">
+	<tr>
+		<td class="t1">아이디 : </td>
+		<td>
+			<input name = "id">
+		</td>
+	</tr>
+	<tr>
+		<td class="t1">비밀번호 : </td>
+		<td>
+			<input name = "pw">
+		</td>
+	</tr>
+	<tr>
+		<td class="t1">회원이름 : </td>
+		<td>
+			<input name = "name">
+		</td>
+	</tr>
+	<tr>
+		<td class="t1">회원전화 : </td>
+		<td>
+			<input name = "tel">
+		</td>
+	</tr>
+	<tr>
+		<td colspan = "2">
+			<button id = "b1">회원가입 요청</button>
+	</tr>
+</table>
+</form> 
+<!-- 아래 주소는 form 태그 밖에 있으므로 jsp에서 읽어오지 못한다.-->
+<table>
+	<tr>주소 : <input name = "addresss"></tr>
+</table>
+```
+
+```jsp
+<!-- insert.jsp -->
+<!-- 필요하지 않은 부분은 생략 ex)style-->
+<%
+    String id = request.getParameter("id"); //"apple"
+    String pw = request.getParameter("pw"); //"1234"
+    String name = request.getParameter("name"); //"apple"
+    String tel = request.getParameter("tel"); //"010"
+    String address = request.getParameter("address");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+회원 가입 요청 되었음<br>
+
+ID : <%= id %><br>
+PW : <%= pw %><br>
+NAME : <%= name %><br>
+TEL : <%= tel %><br>
+ADDRESS : <%= address %> <br>
+
+</body>
+</html>
+```
+
+다음과 같이 Address 값은 받아오지 못했으므로 `null`로 뜬다. (DB처리에는 문제가 없다.)
+
+<p align="center"><img src="https://user-images.githubusercontent.com/64455378/225612395-cef594b8-94b0-4e9c-8990-2520de1e1027.gif" width=400> </p>
 
 > 오늘 코드 Overview
 

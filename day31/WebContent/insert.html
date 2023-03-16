@@ -63,7 +63,9 @@
 	</tr>
 </table>
 </form> 
-<!-- 입력한 값들이 서버(톰킷)으로 전달될때는 form태그 안에 있어야 함. -->
+<table>
+	<tr>주소 : <input name = "addresss"></tr>		<!-- address는 Form 태그 밖에 있으므로 JSP에서 받아오지 못함 -->
+</table>
 <!-- http://localhost:8888/web00/insert.jsp?id=ddd&pw=ddd&name=ddd&tel=ddd -->
 </body>
 </html>

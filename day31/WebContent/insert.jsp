@@ -6,7 +6,7 @@
         String pw = request.getParameter("pw"); //"1234"
         String name = request.getParameter("name"); //"apple"
         String tel = request.getParameter("tel"); //"010"
-
+        String address = request.getParameter("address");
     %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +26,7 @@ ID : <%= id %><br>
 PW : <%= pw %><br>
 NAME : <%= name %><br>
 TEL : <%= tel %><br>
+ADDRESS : <%= address %> <br>	<!-- null로 뜸 -->
 
 </body>
 </html>
