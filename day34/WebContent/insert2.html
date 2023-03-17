@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판 글 작성</title>
+<style type="text/css">
+	body {
+	background : #d7b1f0;
+	}
+	button {
+	background : #66f2f0;
+	}
+	.t1{
+	background : #f7a8dd;
+	width : 150px;
+	text-align : center;
+	}
+	#b1{
+	background : #fabc02;
+	border: none;
+	}
+</style>
+</head>
+<body>
+<h3>게시판 글쓰기 페이지</h3>
+
+<hr>
+<a href = "bbs.html">
+	<button>첫 페이지로</button>
+</a>
+<form action = "insert2.jsp">
+<table border="1">
+	<tr>
+		<td class="t1">제목 : </td>
+		<td>
+			<input name = "TITLE">
+		</td>
+	</tr>
+	<tr>
+		<td class="t1">내용 : </td>
+		<td>
+			<input name = "CONTENT">
+		</td>
+	</tr>
+		<tr>
+		<td class="t1">작성자 : </td>
+		<td>
+			<input name = "WRITER">
+		</td>
+	</tr>
+	<tr>
+		<td colspan = "2">
+			<button id = "b1">게시판 글쓰기</button>
+	</tr>
+</table>
+</form> 
+</body>
+</html>

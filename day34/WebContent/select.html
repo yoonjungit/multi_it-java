@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판 글 검색</title>
+<style type="text/css">
+	body {
+	background : #d7b1f0;
+	}
+	button {
+	background : #66f2f0;
+	width : 100px
+	}
+	.t1{
+	background : #f7a8dd;
+	width : 200px;
+	text-align : center;
+	}
+	#b1{
+	background : #fabc02;
+	border: none;
+	}
+</style>
+</head>
+<body>
+<h3>게시판 글 검색 페이지</h3>
+
+<hr>
+<a href = "bbs.html">
+	<button>첫 페이지로</button>
+</a>
+
+<form action = "select.jsp">
+<table border="1">
+	<tr>
+		<td class="t1">검색할 회원 ID 입력 : </td>
+		<td>
+			<input name = "id">
+		</td>
+	</tr>
+	<tr>
+		<td colspan = "2">
+			<button id = "b1">회원 검색 요청</button>
+	</tr>
+</table>
+</form> 
+
+</body>
+</html>

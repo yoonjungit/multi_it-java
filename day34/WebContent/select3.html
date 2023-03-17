@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품 검색</title>
+<style type="text/css">
+	body {
+	background : #d7b1f0;
+	}
+	button {
+	background : #66f2f0;
+	width : 100px
+	}
+	.t1{
+	background : #f7a8dd;
+	width : 200px;
+	text-align : center;
+	}
+	#b1{
+	background : #fabc02;
+	border: none;
+	}
+</style>
+</head>
+<body>
+<h3>케이크 상품 검색</h3>
+
+<hr>
+<a href = "product.html">
+	<button>첫 페이지로</button>
+</a>
+
+<a href = "http://localhost:8888/web01/select3.jsp?name=당근케이크">
+<button>시그니처 케이크 보러가기</button></a>
+<form action = "select3.jsp">
+<table border="1">
+	<tr>
+		<td class="t1">케이크 이름으로 검색</td>
+		<td>
+			<input name = "name">
+		</td>
+	</tr>
+	<tr>
+		<td colspan = "2">
+			<button id = "b1">검색</button>
+	</tr>
+</table>
+</form> 
+</body>
+</html>
