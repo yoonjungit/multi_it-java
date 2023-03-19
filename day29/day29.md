@@ -89,4 +89,4 @@ Member테이블 전체 받아오기 : [UI](./src/SelectAll/SelectUITest.java), [
 
 담당 메뉴 구현
 
-[프로젝트 일지](../project01/BestRestaurant.md/#3구현-2단계-29일차)
+[프로젝트 일지](../project01/BestRestaurant.md/#2-d-1-개발-3일차-수업-29일차)

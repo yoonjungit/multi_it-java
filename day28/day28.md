@@ -109,4 +109,4 @@ Member 테이블 참조 : [회원 UI](./src/viewdb/LoginUI.java), [회원 DTO](.
 
 DB설계, 기초UI 구현
 
-[프로젝트 일지](../project01/BestRestaurant.md/#2-구현-1단계-28일차)
+[프로젝트 일지](../project01/BestRestaurant.md/#1-d-2-개발-2일차-수업-28일차)

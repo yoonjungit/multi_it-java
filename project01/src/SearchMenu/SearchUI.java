@@ -188,7 +188,6 @@ public class SearchUI extends JFrame{
 						//해당 데이터가 북마크DB리스트에
 						//있으면 북마크 해제(꽉찬 별->빈별)
 						//없으면 북마크 설정(빈별->꽉찬 별)
-						int bmUpdate = dao.bookmarkUpdate(resName);
 						if (bookmark.getIcon().equals(fullStarIcon)) {
 							bookmark.setIcon(starIcon);
 						} else {
