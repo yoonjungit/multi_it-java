@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h3>Get요청</h3>
+<!-- <a> 태그는 get요청에서만 사용가능(주소로 정보를 전달하기 때문) -->
+<a href="login?find=자동차">검색(get)</a>
+<hr>
+
+<h3>Post요청</h3>
+
+<!-- form 태그에서 default method 형식은 get방식, 따라서 post인 경우 꼭 지정해줘야 함 -->
+<form action="login" method="post">
+	아이디 : <input name="id"> <br>
+	패스워드 : <input name="pw"> <br>
+	<button>로그인 처리(post)</button>
+</form>
+
+</body>
+</html>
