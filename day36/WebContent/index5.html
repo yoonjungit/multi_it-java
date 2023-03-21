@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function join(){
+		id = document.getElementById('userID').value
+		CheckIDTag = document.getElementById("CheckID")
+		if (id.length<5) {
+			CheckID.innerHTML = "5글자 이상 입력 바랍니다."
+		}
+		
+		pw = document.getElementById('userPW').value
+		pw2 = document.getElementById('userPW2').value
+		
+		CheckPWTag = document.getElementById("CheckPW")
+		if (pw.length<4) {
+			CheckPW.innerHTML = "비밀번호는 4자리 이상 입력 바랍니다."
+		}else if(pw!=pw2){
+			CheckPW.innerHTML = "비밀번호가 일치하지 않습니다."
+		}
+		
+		result = document.getElementById("result")
+		if(id.length>5 && pw==pw2){
+			result.innerHTML = "회원가입 완료"
+		}else{
+			result.innerHTML = "아이디와 비밀번호를 확인해주세요"
+		}
+	}
+</script>
+<style>
+	body{
+	background : #adffc3;
+	}
+</style>
+</head>
+<body>
+	아이디 입력 : <input id="userID"><br>
+	<div id="CheckID" style="color:#de59eb; width: 500px; height: 30px; font-size: 15px"></div><br>
+	비밀번호 입력 : <input id="userPW"><br>
+	비밀번호 확인 : <input id="userPW2"><br>
+	<div id="CheckPW" style="color:#de59eb; width: 500px; height: 30px; font-size: 15px"></div><br>
+	<button onclick="join()">회원가입</button><br>
+	<div id="result" style="color:#de59eb; width: 500px; height: 30px; font-size: 15px"></div><br>
+	
+</body>
+</html>

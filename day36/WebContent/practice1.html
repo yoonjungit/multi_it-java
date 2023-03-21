@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Practice 1</title>
+<script>
+	function me(){
+		name = document.getElementById("name").value
+		company = document.getElementById("company").value
+		position = document.getElementById("position").value
+		gender = document.getElementById("gender").value
+		
+		var genImg = ""
+		if (gender=="여") {
+			genImg = "https://cdn-icons-png.flaticon.com/512/103/103277.png"
+		} else {
+		genImg = "https://cdn-icons-png.flaticon.com/512/3439/3439472.png"
+		}
+		
+		printText = company + "에 " + position + "으로 있는 "+ name + "입니다." + "<img src='" +genImg+ "' width=200 >"
+		
+		print = document.getElementById('print')
+		
+		print.innerHTML = printText
+	}
+</script>
+</head>
+<body>
+	이름 : <input id="name"><br>
+	회사s : <input id="company"><br>
+	직책 : <input id="position"><br>
+	성별 : 
+	<select id="gender">
+		<option value ="여">여</option>
+		<option value ="남">남</option>		
+	</select><br>
+	<button onclick="me()"> print</button>
+	<div id="print" style = "height : 30px; width : 500px ;font-size : 20px ; color : blue">결과</div>
+</body>
+</html>
