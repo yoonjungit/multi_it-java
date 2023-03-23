@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.6.4.js"></script>
+<script>
+$(function() {
+	$("#write").click(function() {
+		comment=$("#comment").val()
+		divTag=$("#result")
+		divTag.append("<img src='https://user-images.githubusercontent.com/64455378/231707793-d2aa0bba-d504-411e-9d1f-e370b0ff5fd6.png' width='150px'>")
+		divTag.append("<div>"+comment+"</div>")
+	})
+})
+</script>
+</head>
+<body>
+<input id="comment" placeholder="댓글 입력...">
+<button id="write">게시</button>
+<hr>
+<div id="result"></div>
+</body>
+</html>

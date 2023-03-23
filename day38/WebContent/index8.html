@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.6.4.js"></script>
+<script>
+	$(function() {
+		$("#food").click(function() {
+			foodEat = $("#foodEat").val()
+			alert(foodEat + " 먹고싶다")
+		})
+		$("#netflix").click(function() {
+			location.href="https://www.netflix.com/kr/"
+		})
+		
+		$("#text").click(function() {
+			divTag=$("#result")
+			divTag.text("안녕? 제이쿼리는 처음이지?")	
+		})
+		$("#text2").click(function() {
+			divTag=$("#result2")
+			divTag.html("<font color=blue>안녕? 또 왔어. 다른 색깔로</font>")	
+		})
+		
+	})
+</script>
+</head>
+<body>
+<input id="foodEat">
+<button id="food">먹자</button>
+<hr>
+<button id="netflix">클릭 시 넷플릭스 이동</button>
+<hr>
+<button id="text">텍스트 입력1</button>
+<div id="result"></div>
+<hr>
+<button id="text2">텍스트 입력2</button>
+<div id="result2"></div>
+</body>
+</html>

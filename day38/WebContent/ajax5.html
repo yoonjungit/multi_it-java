@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#b1").click(function() {
+			$.ajax({
+				url: "coin.jsp",
+				data: {
+					money: $("#won").val(),
+					currency: "won"
+				},
+				success: function(x) {	//성공시
+					$("#result").html("달러는 : "+x)
+				},
+				error: function(e) {	//실패시
+					alert(e)
+				}
+			})
+		})
+		$("#b2").click(function() {
+			$.ajax({
+				url: "coin.jsp",
+				data: {
+					money: $("#dollar").val(),
+					currency: "dollar"
+				},
+				success: function(x) {	//성공시
+					$("#result").html("원화는 : "+x)
+				},
+				error: function(e) {	//실패시
+					alert(e)
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+원화 ↔ 달러<br>
+<input id="won" placeholder="원화 입력"> <button id="b1">원화→달러</button><br>
+<input id="dollar" placeholder="달러 입력"> <button id="b2">달러→원화</button><br>
+
+<div id="result"></div>
+</body>
+</html>

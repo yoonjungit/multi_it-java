@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- script 태그 안에는 각각 한개의 script만 -->
+<script type="text/javascript" src="js/jquery-3.6.4.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
+<script type="text/javascript">
+	$(function() { //DOM Tree로 읽어온 후 실행
+		// 자바스크립트에서는 document.getElementById("today") ==> $("#today")
+		$("#b1").click(function() {
+			alert('짜잔')
+		})	
+	})
+</script>
+</head>
+<body>
+<button id="b1">나를 클릭하면?</button>
+</body>
+</html>

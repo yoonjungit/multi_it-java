@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#b1").click(function() {
+			$.ajax({
+				url: "money.jsp",
+				data: {
+					money: $("#money").val(),
+					choice: $("#choice").val()			
+				},
+				success: function(x) {	//성공시
+					alert("결제 금액은 "+x)
+				},
+				error: function(e) {	//실패시
+					alert(e)
+				}
+			})
+		})
+		$("#b2").click(function() {
+			$.ajax({
+				url: "idCheck.jsp",
+				data: {
+					id: $("#id").val()
+				},
+				success: function(x) {	//성공시
+					alert(x)
+					$("#result").html(x)
+				},
+				error: function(e) {	//실패시
+					alert(e)
+				}
+			})
+		})
+		$("#b3").click(function() {
+			$.ajax({
+				url: "tel.jsp",
+				data: {
+					tel: $("#tel").val()
+				},
+				success: function(x) {	//성공시
+					alert("인증번호 : "+x)
+				},
+				error: function(e) {	//실패시
+					alert(x)
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+<h3>결제</h3>
+<!-- 1. 결제수단 별 결제 총금액 계산 -->
+<!-- 1) 계좌이체 1000원 할인 / 2) 신용카드 1000원 추가 / 3) 휴대폰 결제 수수료·할인 없음 -->
+결제금액 : <input id="money" value="1000"> <br>
+1) 계좌이체 2) 신용카드 3) 휴대폰 결제 <br>
+결제수단 : <input id="choice" value="2"><button id="b1" style="background: #ffdd80">결제하기</button><br>
+
+<hr>
+<h3>회원가입</h3>
+<!-- 2. 회원 가입시 ID 중복 여부 체크 -->
+ID 입력 : <input id="id" value="root">
+<button id="b2" style="background: #ffdd80">ID중복체크</button><span id="result">&nbsp;</span><br>
+
+<!-- 3. 전화번호 앞 세자리에 따른 각각 다른 인증번호 반환 -->
+전화번호 입력 : <input id="tel" value="01910041004">
+<button  id="b3" style="background: #ffdd80">인증번호 받기</button><br><br>
+
+<hr>
+
+</body>
+</html>

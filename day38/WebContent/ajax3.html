@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#b1").click(function(){
+			//b1클릭 시 ajax2-1 호출
+			$.ajax({
+				url:"ajax2-1.html",		//url호출
+				success: function(x){	//x:ajax2-1내용
+					alert(x)
+				}
+			})
+		})
+		$("#b2").click(function(){
+			//b2클릭 시 ajax2-2 호출
+			$.ajax({
+				url:"ajax2-2.html",
+				success: function(x){	//x:ajax2-2내용
+					$("#result").append(x + '<br>')		//id=result에 x넣기
+				}
+			})
+		})
+		$("#b3").click(function(){
+			//b3클릭 시 ajax2-3 호출
+			$.ajax({
+				url:"ajax2-3.html",
+				success: function(x){	//x:ajax2-3내용
+					alert(x)
+					$("#result").append(x + '<br>')
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+<button id="b1">오늘 치킨 먹을까?</button>
+<button id="b2">사당역 주변 맛집 알려줘</button>
+<button id="b3">지금 선릉역 날씨 어때?</button>
+<hr>
+<div id="result"></div>
+</body>
+</html>
